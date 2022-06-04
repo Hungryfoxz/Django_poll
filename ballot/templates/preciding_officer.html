@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!--Preciding officer panel..-->
+    <div class="container">    
+
+
+        <div class="row center-align">
+            <h1>Actions of the Preciding Officer</h1>
+        </div>
+        <div class="row center-align">
+            <form action=" " method="post">
+            <div style="height: 300px; padding-bottom: 150px;padding-top: 150px;">
+                <p>Click this to allow the user to submit his vote</p>            
+                <a href="/admitted_from_po" class="btn btn-large waves-effect waves-black red white-text pulse">New Vote</a>
+            </div>
+            </form>
+        </div>
+
+        <div class="row center-align">
+            <div class="col l4 m4 s4">
+                <p>Get the total results here.</p>
+                <a href="/tables" class="btn btn-large waves-effect waves-purple teal white-text z-depth-5">Total Vote</a>
+            </div>
+            <div class="col s4 l4 m4 offset-l4 offset-m4 offset-s4">
+            <p>End the session and logout</p>
+                <a href="#" class="btn btn-large waves-effect waves-purple teal white-text z-depth-5">Close Vote</a>
+            </div>
+        </div>
+
+
+        <!--Hiding the message after 3 seconds..-->
+
+            <!-- Success message shown here!!!   -->
+            <!--[++]  This will be an alert.  [++]-->
+            <div>
+                {% if messages %}
+                <ul class="messages center-align green-text">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+                        
+                        <h6 id="hide_the_div"> <b>{{message}}</b></h6>
+                        
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+    </div>
+
+{% endblock content %}
+
+
+

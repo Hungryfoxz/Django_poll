@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <table class="striped centered">
+        <thead>
+        <tr>
+            <th>Position</th>
+            <th>Candidate</th>
+            <th>Total Votes</th>
+        </tr>
+        </thead>
+
+        {% for position in positions %}
+            {% for candidate in candidates  %}
+                {% if candidate.position == position %}
+                <tbody>
+                <tr>
+                    <td>{{position}}</td>               
+                    <td>{{candidate.name}}</td>
+                    <td>{{candidate.votes}}</td>
+                </tr>
+                </tbody>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock content %}

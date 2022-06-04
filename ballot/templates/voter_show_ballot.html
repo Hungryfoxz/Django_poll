@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Container starts here -->
+<div class="container center-align">
+    
+
+
+    <div class="row">       
+        <div style="height: 600px;padding-top: 200px;">
+            <p>Press the show ballot to vote</p>
+            <a href="/voter" class="btn waves-effect waves-purple indigo white-text pulse">Show Ballot</a>
+        </div>
+    </div>
+
+        <!-- Success message shown here!!!   -->
+    <!--[++]  This will be an alert.  [++]-->
+
+    {% if messages %}
+    <ul class="messages center-align green-text">
+        {% for message in messages %}
+        <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+            
+            <h6 id="hide_the_div"> <b>{{message}}</b></h6>
+            
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+</div>   
+{% endblock content %}

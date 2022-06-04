@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--This is the voter panel to show the ballot-->
+<div class="container">
+
+ 
+    
+
+<!-- This form records the vote from the voter and also releases the button for the preciding officer on succes to click the new vote again -->
+    <!-- [========Form starts =========] -->
+    <section class="section contianer" id="vote">
+    <div class="row center-align">
+        <div class="col s12 m12 l12">
+        <form action=" " method="POST">
+  
+            <!--CSRF validation-->
+            {% csrf_token %}
+
+                {% for position in positions %}
+
+                <!-- If the position is present in the Positon_Table -->
+                <!-- Printing the position here-->
+                <h4 class="purple-text"><i class="material-icons">person_pin</i>{{position}}</h4>
+                <hr style="color: rgb(254, 232, 243);">
+                <h4></h4>
+                <!-- The position is printed in the main container div -->  
+                <div class="row center-align">
+                <!-- This is div will assign a Row -->
+                    <div class="col s12 m10 l10 offset-l1 offset-m1">
+                    <ul>
+                        {% for candidate in candidates  %}
+                            {% if candidate.position == position %}
+                                <li>
+                                    <label>
+                                        <input class="with-gap" name="{{position}}" type="radio" value="{{candidate.id}}" autocomplete="off"/>
+                                        <span class="black-text" style="margin-top: 4px;"><b>{{candidate.name}}</b></span>
+                                    </label>                                
+                                </li>
+                                <h4></h4>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    </div>
+                </div>
+                {% endfor %}  
+
+
+                <!--Button submit/register-->
+                <div class="align-center center-align">
+                    <h1></h1>
+                  <button class="btn z-depth-5 {{ context.data }}"><i class="material-icons left">account_circle</i> SUBMIT </button>
+                </div>
+                <p></p>
+    
+    
+    
+        </form>
+    
+        <!--end of form-->
+        </div>
+    </div>
+    
+    </section>
+
+</div>
+
+{% endblock content %}
