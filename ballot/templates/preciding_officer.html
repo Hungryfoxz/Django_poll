@@ -1,8 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- Pusher Integration is done here ... -->
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('2cd0f0edd98809e00ff2', {
+    cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('{{user.id}}');
+    channel.bind('my-event', function(data) {
+       //alert(JSON.stringify(data));
+       document.getElementById("ms").innerHTML = " ";
+       alert(data.message)
+       document.getElementById("vote_btn").disabled = false;
+       document.getElementById("vote_btn").innerHTML = "New Vote";
+       document.getElementById("ms").innerHTML = "One user Voted Successfully !"; 
+       document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+    });
+</script>
+
+</head>
+
+<body>
 
     <!--Preciding officer panel..-->
     <main>
+                       
+        <!--starting Test of pusher .. -->
+                 <!--<h1>Pusher Test</h1>
+                 <p>
+                    Try publishing an event to channel <code>my-channel</code>
+                    with event name <code>my-event</code>.
+                 </p>-->
+         <!--Test ending of pusher .. -->
+
+
     <div class="my_glass_container">    
 
         <div class="preciding-inside-glass">
@@ -15,9 +50,9 @@
             <!--<form action=" " method="post">
                 {% csrf_token%}-->
             <div>
-                <p>Click below to allow the user to submit his vote.</p>
+                <p id="p-id">Click below to allow the user to submit his vote.</p>
                 <div class="preciding-form-button-main-inside">            
-                    <a href="/admitted_from_po"><button class="btn">New Vote</button></a>
+                    <!--<a href="/admitted_from_po">--><button onclick="new_vote()" class="btn bt" id="vote_btn">New Vote</button></a>
                 </div>
             </div>
             <!--</form>-->
@@ -46,7 +81,7 @@
 
             <!-- Success message shown here!!!   -->
             <!--[++]  This will be an alert.  [++]-->
-        <div class="preciding-messages">
+<!--        <div class="preciding-messages">
             {% if messages %}
                 <ul class="">
                     {% for message in messages %}
@@ -57,7 +92,16 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-        </div>
+            </div>                    -->
+
+            <!--  Messages  -->
+            <div class="preciding-messages">
+                <ul>
+                    <li>
+                        <h5 id="ms">Welcome! {{ user }}</h5>
+                    </li>
+                </ul>
+            </div>
 
         <div class="clocks">
             <div></div>
@@ -79,6 +123,27 @@
         </div>
         
 </main>
+<!-- Java script goes here .. -->
+<script>
+    function new_vote(){
+        //console.log("Hi");
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET',"/admitted_from_po");
+        xhr.send();
+        //console.log(1);
+        //const x = document.getElementById("ms");
+        //x.innerHTML = "Hiiiiii!!";
+        document.getElementById("ms").innerHTML = " The Voter can vote Now !";
+        //console.log(2);
+        //console.log(x);
+        setTimeout(function(){
+            document.getElementById("ms").innerHTML = " Waiting for the Voter to vote Now !";
+        }, 3000);
+        document.getElementById("vote_btn").disabled = true;
+        document.getElementById("vote_btn").innerHTML = "Waiting";
+        document.getElementById("p-id").innerHTML = "Waiting for the voter to Submit his/her Vote .";
+    }
+</script>
 {% endblock content %}
 
 

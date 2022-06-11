@@ -1,14 +1,21 @@
 from multiprocessing import context
-import re
-
+import string
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import HttpResponseRedirect, redirect, render, reverse
 from .models import Candidate, Positions, extra_field
-
+# Integrating Pusher js Here
+import pusher
+pusher_client = pusher.Pusher(
+  app_id='1422023',
+  key='2cd0f0edd98809e00ff2',
+  secret='669c6efed9bc1566af99',
+  cluster='ap2',
+  ssl=True
+)
 # Create your views here.
  
 #############################################  Index.html  ######################################################################
@@ -101,8 +108,17 @@ def voter(request):
                 #CheckPoint here to check if the preciding officer has allowed..
                 instance_var.status = False
                 instance_var.save() 
-                messages.success(request, 'Congratulation! Your vote has been recorded.')
+                messages.success(request, 'Congratulation! Your vote has been recorded..')
                 #context = { 'data':'disabled'}
+
+                #########################################################################
+                # Integrating Pusher js here...
+                #name = request.user
+                #channel_name = u"{}".format(request.user)
+                #print(channel_name)
+                pusher_client.trigger([str(request.user.id)], 'my-event', {'message': 'The Voter has Voted Successfully.'})
+                #########################################################################
+                
                 return render(request, 'voter_show_ballot.html')#, ({'context':context})
             candidates = Candidate.objects.all()
             position = Positions.objects.all().order_by('priority')
@@ -114,7 +130,7 @@ def voter(request):
 ############################################# test Pass to allow vote vs new_vote  ##############################################
 
 # FROM THE ADMIN SIDE ADMITTED FOR THE VOTER TO VOTE....>>>>>>
-def admitted_from_po(request):
+'''def admitted_from_po(request):
     if request.user.is_authenticated:
         #currently_accessing = request.user
         instance_var = extra_field.objects.get(users=request.user)
@@ -128,6 +144,20 @@ def admitted_from_po(request):
             return HttpResponseRedirect(reverse('officer'))
     else:
         messages.warning(request, "Your are not authorized to view this page or your session may have ended..Login again!")
+        return HttpResponseRedirect(reverse('officer'))'''
+def admitted_from_po(request):
+    if request.user.is_authenticated:
+        #currently_accessing = request.user
+        instance_var = extra_field.objects.get(users=request.user)
+        if instance_var.status != False:
+            return HttpResponseRedirect(reverse('officer'))
+        else:
+            instance_var.status = True
+            instance_var.save()
+            #messages.warning(request, '***The voter can vote Now...')
+            return HttpResponseRedirect(reverse('officer'))
+    else:
+        #messages.warning(request, "Your are not authorized to view this page or your session may have ended..Login again!")
         return HttpResponseRedirect(reverse('officer'))
       
 #################################################  Table to show the results #########################################################
@@ -137,3 +167,6 @@ def tables(request):
         candidates = Candidate.objects.all()
         position = Positions.objects.all().order_by('priority')
         return render(request, 'results.html',{'candidates': candidates,'positions':position})
+
+################################################## javascript request from the officer ##############################################
+

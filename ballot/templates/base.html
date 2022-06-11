@@ -17,8 +17,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- Pusher JS integration here .. -->
+    <script src="https://js.pusher.com/7.1/pusher.min.js"></script>
+    <!--<script>
 
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
+        var pusher = new Pusher('2cd0f0edd98809e00ff2', {
+          cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+          alert(JSON.stringify(data));
+        });
+    </script>-->
 
 
 
@@ -96,6 +110,7 @@
         border-radius: 2rem;
         z-index: 10;
         backdrop-filter: blur(1rem);
+        
         display: flex;
       }
       .circle1,.circle2{
@@ -361,6 +376,13 @@
       align-items: center;
       box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
     }
+    /*  disabled button */
+    .bt:disabled,
+    .bt[disabled]{
+      border: none;
+      background: #dfdada;
+      color: #8f7e7e;
+    }
 
    /*  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
     /* Animation */
@@ -598,7 +620,7 @@
       font-weight: lighter;
     }
     /*####################################################################*/
-    /*  Total votes table goes here..  */
+    /*  Total votes table goes here..  background: linear-gradient(to right top, #5af0d4, #4fd3e7); */
     /*
     #color1{
       position: absolute;
@@ -649,7 +671,8 @@
     }
     */
     .results-container{
-      background-image: linear-gradient(45deg, rgba(0, 157, 255, 0.39) 0%, rgba(146, 50, 210, 0.7) 100%);
+      background: linear-gradient(to right top, #5af0d4, #4fd3e7);
+      /*background-image: linear-gradient(45deg, rgba(18, 215, 206, 0.726) 60%, rgba(45, 237, 228, 0.7) 100%);*/
       background-attachment: fixed;
       background-repeat: no-repeat;
       background-size: cover;
@@ -675,10 +698,10 @@
       background: white;
       min-height: 100vh;
       min-width: 100vh;
-      background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+      background: linear-gradient(to right bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
       /*border-radius: 2rem;*/
       z-index: 10;
-      backdrop-filter: blur(1rem);
+      backdrop-filter: blur(2rem);
       display: flex;
       background-attachment: fixed;
       background-position: center;
@@ -697,7 +720,7 @@
       box-shadow: 0 0 20px rgba(37, 36, 36, 0.15);
     }
     .styled-table thead tr {
-      background: linear-gradient(to right top, #dc85dc, #a34cbe, #811bcf);
+      background: linear-gradient(to right top, #037750, #09bd93, #0ca27a);
       color: #ffffff;
       text-align: left;
      }
@@ -705,7 +728,8 @@
       padding: 1.23rem 4rem;
     }
     .styled-table tbody tr {
-      border-bottom: .1rem solid #b182d5;
+      background: linear-gradient(to right bottom, rgba(250, 253, 253, 0.7), rgba(255, 255, 255, 0.871));
+      border-bottom: .1rem solid #07685b;
     }
     /*.styled-table tbody tr:nth-of-type(even) {
       background-color: #f3f3f3;
@@ -713,7 +737,9 @@
     /*.styled-table tbody tr:last-of-type {
         border-bottom: .1rem solid #009879;
     }*/
-  </style>
+ 
+ 
+ </style>
     
 
 
@@ -737,10 +763,11 @@
 
 
 
-
+<!--Head tag is being put inside of every page -->
+<!--
   </head>
 
-     <body>
+     <body>-->
         
         
         {% block content %}
@@ -755,7 +782,7 @@
         $(function() {
               setTimeout(function() {
                  $("#hide_the_div").fadeOut(2000); 
-                }, 1000)
+                }, 1500)
             })
       </script>
     </body>
