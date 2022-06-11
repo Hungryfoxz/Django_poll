@@ -1,18 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-    <div class="container">
+    <main>
+        <div class="my_glass_container">
+            <div class="my-form">
+                <div>
+                <h1>Login</h1>
+                </div>
+                <form  method="post">
+                {% csrf_token %}
+                        <div>
+                            {{form}}
+                        </div>
+                        <div class="login-submit">
+                            <input type="submit" value="Login">
+                        </div>
+                </form>
+            </div>
+       
+        </div>
+    </main>
+
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+     <div class="circle3"></div>
+
+
+
+
+
+<!--Form Design Exclude-->
+<!--   <div class="">
         <h1>Login</h1>
         <form  method="post">
         {% csrf_token %}
         <div class="row">
-            <div class="col s12 l8 m8 offset-l2 offset-m2">
+            <div class="">
                 {{form}}
                 <h1></h1>
-                 <input type="submit" value="login" class="waves-effect waves-purple btn-flat teal lighten-2">
+                 <input type="submit" value="login" class="">
              </div>
         </div>
         </form>
     </div>
+--> 
 
 {% endblock content %}

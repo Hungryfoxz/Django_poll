@@ -5,12 +5,739 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
 
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>JISTSU</title>
+    <!--Style-->
+    <!--<link rel="Css style import" href="style.css" type="text/css">-->
+    <!--Lets do the style here until the final output is obtained...-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+
+      /*###################################################################################################*/
+
+      /* All the styles go here */
+      *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+  
+      h1{
+        color: #426696;
+        font-weight: 600;
+        font-size: 2.5rem;
+        opacity: 0.8;
+      }
+      
+      h2{
+        color: #3b67a3;
+        font-weight: 600;
+        font-size: 1.5rem;
+        opacity: 0.8;
+      }
+      h3{
+        color: #3b67a3;
+        font-weight: 600;
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+      p{
+        color: #143769;
+        font-weight: 300;
+        opacity: 0.9;
+        font-size: .786rem;
+      }
+
+
+
+      /*Base styles goes here */
+      /*    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    */
+      main{
+          font-family: "Poppins", sans-serif;
+          min-height: 100vh;
+          /*background: pink;*/
+          background: linear-gradient(to right top, #5af0d4, #4fd3e7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        /* button animation goes here .. */
+        .btn-lift{
+
+        }
+      /*#################################################################################################*/
+      .my_glass_container{
+        background: white;
+        min-height: 80vh;
+        width: 60%;
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+        border-radius: 2rem;
+        z-index: 10;
+        backdrop-filter: blur(1rem);
+        display: flex;
+      }
+      .circle1,.circle2{
+        background: white;
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+        height: 17rem;
+        width: 17rem;
+        position: absolute;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .circle1{
+        top: 5%;
+        right: 15%;
+      }
+      .circle2{
+        bottom: 5%;
+        left: 10%;
+      }
+      .circle3{
+        background: white;
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
+        height: 8rem;
+        width: 8rem;
+        position: absolute;
+        border-radius: 50%;
+        z-index: 1;
+        top: 29%;
+        right: 4%;
+        backdrop-filter: blur(1rem);
+      }
+
+      /*   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   */
+      .dashboard{
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+        border-radius: 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .dashboard img{
+        border-radius: 50%;
+      }
+      .dashboard h1{
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .btn{
+        background: linear-gradient(to right top, #4dd8bf, #4fd3e7);
+        color: white;
+        font-size: 1rem;
+        padding: .6rem 1.2rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 2rem;
+        text-align: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+      }
+      .btn:hover{
+        color: #4dd8bf;
+        background: rgb(255, 255, 255);
+        transition: .5s;
+        
+      }
+      .dashboard a{
+        text-decoration: none;
+      }
+      /*       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           */
+      .about{
+        flex: 2;
+        margin-top: 2rem;
+        margin-left: 1.2rem;
+      }
+      .cards{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        /*margin-top: 1rem;
+        margin-left: 1rem;
+        padding-bottom: 1rem;*/
+        margin-top: 1.5rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+      }
+      .card{
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+        border-radius: 2rem .5rem 2rem .5rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
+        shape-outside: ;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+      }
+      .card-content{
+        padding: 1rem;
+      }
+      .card-content h3{
+        text-align: center;
+        padding-bottom: .7rem;
+      }
+
+      
+      /*####################################################################################################################*/
+      /* Login panel design Goes here */
+      .my-form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex: auto;
+      }
+      .my-form #id_username,#id_password{
+        width: 100%;
+        border: none;
+        outline: none;
+        border-radius: 1.6rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .my-form input{
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 254, 254, 0.9));
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.2);
+        text-align: left;
+        padding-left: 2rem;
+      }
+      .my-form label{
+        font-size: .767rem;
+        margin-left: 1.2rem;
+      }
+      /*.login-submit{
+        margin-top: 2rem;
+        color: teal;
+        background: pink;
+        border: none;
+        outline: none;
+        width: 100%;
+      }*/
+      .my-form input[type="submit"]
+      {
+        margin: 2rem;
+        background: linear-gradient(to right top, #4dd8bf, #4fd3e7);
+        color: white;
+        font-size: 1rem;
+        padding: .5rem 2rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 2rem;
+        text-align: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);    
+      }
+      .my-form input[type="submit"]:hover
+      {
+        color: #4dd8bf;
+        background: rgb(255, 255, 255);
+        transition: .5s;
+      }
+      .login-submit{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex: auto;
+      }
+
+      /*#########################################################################################################################*/
+      /*    preciding and voter mutual panel (povo_home.html) */
+      .povo-home-main{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex: auto;
+      }
+      .povo-card{
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+        border-radius: 2rem .5rem 2rem .5rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
+        shape-outside: ;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        margin: 2rem;
+        padding: 1rem;
+      }
+      .povo-card h2{
+        padding-top: 1rem;
+        padding-bottom: 1.3rem;
+        text-align: center;
+      }
+      .povo-card p{
+        margin: 1.46rem;
+      }
+    .povo-btn{
+      display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex: auto;
+    }
+
+    /*###############################################################################################################################*/
+    /* Preciding officer home panel goes here...  */
+    
+    .preciding-inside-glass{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      flex: auto;
+    }
+    .preciding-header{
+
+    }
+    .preciding-form-button-main{
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-left: 5.77rem;
+      padding-right: 5.77rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+    }
+    .preciding-form-button-main-inside{
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      flex: auto;
+    }
+    .preciding-bottom-buttons{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .preciding-tables-button{
+      margin: 1rem;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-left: 5.77rem;
+      padding-right: 5.77rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+    }
+    .preciding-logout-button{
+      margin: 1rem;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-left: 5.77rem;
+      padding-right: 5.77rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+    }
+
+   /*  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
+    /* Animation */
+    .clocks{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    @keyframes animate{
+      0%{
+        opacity: .633;
+        border-radius: .5rem;
+        transform: translateY(0) rotate(0deg);
+      }
+      100%{
+        opacity: 0;
+        border-radius: 50%;
+        transform: translateY(-1000px) rotate(720deg);
+      }
+    }
+    .clocks div{
+      position: absolute;
+      display: block;
+      width: 7rem;
+      height: 7rem;
+      background: rgba(255, 255, 255, 0.901);
+      bottom: -150px;
+      animation: animate 25s linear infinite;
+    }
+    .clocks div:nth-child(1){
+      left: 60%;
+      width: 2rem;
+      height: 2rem;
+      animation-delay: 1s;
+      z-index: 1;
+      animation-duration: 55s;
+    }
+    .clocks div:nth-child(2){
+      left: 50%;
+      width: 5rem;
+      height: 5rem;
+      animation-delay: 13s;
+      z-index: 1;
+      animation-duration: 86s;
+    }
+    .clocks div:nth-child(3){
+      left: 10%;
+      width: 2rem;
+      height: 2rem;
+      animation-delay: 8s;
+      z-index: 1;
+      animation-duration: 84s;
+    }
+    .clocks div:nth-child(4){
+      left: 17%;
+      width: 1rem;
+      height: 1rem;
+      animation-delay: 19s;
+      z-index: 1;
+      animation-duration: 81s;
+    }
+    .clocks div:nth-child(5){
+      left: 65%;
+      width: 2rem;
+      height: 2rem;
+      animation-delay: 10s;
+      z-index: 1;
+      animation-duration: 54s;
+    }
+    .clocks div:nth-child(6){
+      left: 88%;
+      width: 3rem;
+      height: 3rem;
+      animation-delay: 2s;
+      z-index: 1;
+      animation-duration: 39s;
+    }
+    .clocks div:nth-child(7){
+      left: 43%;
+      width: 3rem;
+      height: 3rem;
+      animation-delay: 21s;
+      z-index: 1;
+      animation-duration: 49s;
+    }
+    .clocks div:nth-child(8){
+      left: 50%;
+      width: 1rem;
+      height: 1rem;
+      animation-delay: 4s;
+      z-index: 1;
+      animation-duration: 47s;
+    }
+    .clocks div:nth-child(9){
+      left: 7%;
+      width: 4rem;
+      height: 4rem;
+      animation-delay: 9s;
+      z-index: 1;
+      animation-duration: 53s;
+    }
+    .clocks div:nth-child(10){
+      left: 65%;
+      width: 2rem;
+      height: 2rem;
+      animation-delay: 6s;
+      z-index: 1;
+      animation-duration: 42s;
+    }
+    .clocks div:nth-child(11){
+      left: 73%;
+      width: 5rem;
+      height: 5rem;
+      animation-delay: 21s;
+      z-index: 1;
+      animation-duration: 49s;
+    }
+    .clocks div:nth-child(11){
+      left: 85%;
+      width: 2rem;
+      height: 2rem;
+      animation-delay: 3s;
+      z-index: 1;
+      animation-duration: 36s;
+    }
+    .clocks div:nth-child(12){
+      left: 95%;
+      width: 7rem;
+      height: 7rem;
+      animation-delay: 17s;
+      z-index: 1;
+      animation-duration: 46s;
+    }
+    .clocks div:nth-child(13){
+      left: 90%;
+      width: 2rem;
+      height: 2rem;
+      animation-delay: 5s;
+      z-index: 1;
+      animation-duration: 73s;
+    }
+    .clocks div:nth-child(14){
+      left: 90%;
+      width: 4rem;
+      height: 4rem;
+      animation-delay: 10s;
+      z-index: 1;
+      animation-duration: 46s;
+    }
+    .clocks div:nth-child(15){
+      left: 13%;
+      width: 3rem;
+      height: 3rem;
+      animation-delay: 16s;
+      z-index: 1;
+      animation-duration: 100s;
+    }
+    /*@@@@@@@@@@@@  animation ending @@@@@@@@@@@@*/
+    .preciding-messages{
+      position: absolute;
+      top: 2%;
+      right: 2%;
+    }
+    .preciding-messages li{
+      list-style: none;
+      color: #0a1a30;
+    }
+    /* ##############################################################################################################  */
+    /*  Voter show ballot..  */
+    .glass-content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: auto;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      border-radius: 2rem;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      shape-outside: ;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+      margin: 8rem 16rem;
+
+    }
+    .voter-show-ballot-button{
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: auto;  
+    }
+    .voter-messages{
+      position: absolute;
+      top: 2%;
+      align-items: center;
+    }
+    .butn{
+      /*background: linear-gradient(to right top, #4dd8bf, #4fd3e7);*/
+      /*background: purple;*/
+      background: linear-gradient(to right top, #4dd8bf, #4fd3e7);
+      color: white;
+      font-size: .8rem;
+      padding: .8rem 1.2rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 2rem;
+      text-align: center;
+      font-size: 1rem;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+      animation-timing-function: ease-in-out;
+      animation-name: downsize;
+      animation-iteration-count: 1;
+    }
+    .butn:hover{
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+      transition: .7s;
+      animation-timing-function: ease-in-out;
+      animation-name: resize;
+      animation-iteration-count: 1;      
+    }
+    .voter-messages li{
+      list-style: none;
+    }
+    .voter-messages h5{
+      color: #110808;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      z-index: 4;
+      font-weight: lighter;
+    }
+    /*####################################################################*/
+    /*  Total votes table goes here..  */
+    /*
+    #color1{
+      position: absolute;
+      background-attachment: fixed;
+      top: 0%;
+      left: 0%;
+      height: 40%;
+      width: 80%;
+      background-color: rgb(229, 135, 225);
+      z-index: -1;
+      background-position: center;
+
+    }
+    
+    #color2{
+      position: absolute;
+      background-attachment: fixed;
+      top: 0%;
+      right: 0%;
+      height: 60%;
+      width: 30%;
+      overflow: hidden;
+      background-color: rgb(226, 145, 177);
+      z-index: -1;
+      background-position: center;
+    }
+    #color3{
+      position: absolute;
+      background-attachment: fixed;
+      bottom: 0%;
+      left: 0%;
+      height: 40%;
+      width: 50%;
+      background-color: rgb(78, 223, 249);
+      z-index: -1;
+      background-position: center;
+    }
+    #color4{
+      position: absolute;
+      background-attachment: fixed;
+      bottom: 0%;
+      right: 0%;
+      height: 40%;
+      width: 50%;
+      background-color: rgb(135, 229, 187);
+      z-index: -1;
+      background-position: center;
+    }
+    */
+    .results-container{
+      background-image: linear-gradient(45deg, rgba(0, 157, 255, 0.39) 0%, rgba(146, 50, 210, 0.7) 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      /*background: linear-gradient(to right top, #ab29da, #5bd0ea, #33caae);*/
+      /*background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+      min-height: 100vh;
+      min-width: 100vh;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      z-index: 10;
+      backdrop-filter: blur(8rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;*/
+    }
+    .glass-container-results{
+      background: white;
+      min-height: 100vh;
+      min-width: 100vh;
+      background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+      /*border-radius: 2rem;*/
+      z-index: 10;
+      backdrop-filter: blur(1rem);
+      display: flex;
+      background-attachment: fixed;
+      background-position: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .results-table-container{
+    }
+    .styled-table{
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.9em;
+      font-family: sans-serif;
+      min-width: 80vh;
+      box-shadow: 0 0 20px rgba(37, 36, 36, 0.15);
+    }
+    .styled-table thead tr {
+      background: linear-gradient(to right top, #dc85dc, #a34cbe, #811bcf);
+      color: #ffffff;
+      text-align: left;
+     }
+    .styled-table th,.styled-table td {
+      padding: 1.23rem 4rem;
+    }
+    .styled-table tbody tr {
+      border-bottom: .1rem solid #b182d5;
+    }
+    /*.styled-table tbody tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }*/
+    /*.styled-table tbody tr:last-of-type {
+        border-bottom: .1rem solid #009879;
+    }*/
+  </style>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </head>
 
      <body>
@@ -22,7 +749,7 @@
  
      
         <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <script>
         $(function() {

@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
 from django.shortcuts import HttpResponseRedirect, redirect, render, reverse
 from .models import Candidate, Positions, extra_field
 
@@ -67,7 +68,7 @@ def voter_show_ballot(request):
         return redirect('login_view')
     else:
         instance_var = extra_field.objects.get(users=request.user)
-        if instance_var.validation == 1:
+        if instance_var.status == True:
             return redirect('voter')
         else:
             messages.warning(request, '***Waiting for the Preciding officer to allow the access..Please ask the Officer to provide access...')
@@ -82,7 +83,7 @@ def voter(request):
     else:
         # Checking the permission from the preciding officer..
         instance_var = extra_field.objects.get(users=request.user)
-        if instance_var.validation == 1:
+        if instance_var.status == True:
             if request.method == 'POST':
                 for position in Positions.objects.only('name'):
                                                                 # it will check for the position in the Positions table..
@@ -98,7 +99,7 @@ def voter(request):
                         else:
                             continue
                 #CheckPoint here to check if the preciding officer has allowed..
-                instance_var.validation = 0
+                instance_var.status = False
                 instance_var.save() 
                 messages.success(request, 'Congratulation! Your vote has been recorded.')
                 #context = { 'data':'disabled'}
@@ -117,11 +118,11 @@ def admitted_from_po(request):
     if request.user.is_authenticated:
         #currently_accessing = request.user
         instance_var = extra_field.objects.get(users=request.user)
-        if instance_var.validation != 0:
+        if instance_var.status != False:
             messages.warning(request, '***Waiting for the voter to vote..Please try again after a few seconds...')
             return HttpResponseRedirect(reverse('officer'))
         else:
-            instance_var.validation = 1
+            instance_var.status = True
             instance_var.save()
             messages.warning(request, '***The voter can vote Now...')
             return HttpResponseRedirect(reverse('officer'))

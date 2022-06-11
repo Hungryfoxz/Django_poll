@@ -1,17 +1,19 @@
+from pickle import FALSE
 from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Create your models here. 
 
                                                                                                     # ADDING FIELD TO USERS
  #[+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]#
 class extra_field(models.Model):
     users = models.OneToOneField(User, on_delete=models.CASCADE)
-    validation = models.IntegerField(default=0)
+    #validation = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name_plural = "zzz : donot_edit_anything_here"
+        verbose_name_plural = "Zone_No_Edit"
                                                                                                             # POSITIONS
 #[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
 
@@ -33,9 +35,13 @@ class Candidate(models.Model):
     name = models.CharField(max_length=80)
     position = models.ForeignKey(Positions, on_delete=models.CASCADE)
     votes = models.IntegerField(default=0)
+    
+
+    #def __str__(self):
+        #return 'Name : {}   |   Postion : {}   |   Votes : {}'.format(self.name,self.position,self.votes)
 
     def __str__(self):
-        return 'Name : {}   |   Postion : {}   |   Votes : {}'.format(self.name,self.position,self.votes)
+        return self.name 
 
     class Meta:
         verbose_name_plural = "Candidate List"

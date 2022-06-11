@@ -1,36 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <div class="row center-align">
-        <h1></h1>
-        <h1>Preciding officer Home</h1>
-        <h1></h1>
-    </div>
+<main>
+<section class="my_glass_container">
+<div class="povo-home-main">
+    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+            <div class="povo-card">
+                <div>
+                <h2>Preciding officer Home</h2>
+                </div>
 
-    <div class="row">
-            <div class="col l10 m10 s10 offset-l1 offset-m1 offset-s1">
-                <h1></h1>
-                <p>Preciding officer panel to show the officer's duties..This is the place where the 
-                    the officer will perform his actions like New ballot,Show vote,Close Vote.
-                </p>
-                <h3></h3>
-                <a href="/preciding_officer" class="btn waves-effect waves-purple">Preciding officer panel</a>
-                <h1></h1>
+            <div>
+                    
+                        
+                    <p>Preciding officer panel to show the officer's duties..This is the place where the 
+                        the officer will perform his actions like New ballot,Show vote,Close Vote.
+                    </p>
+                    <div class="povo-btn">
+                        <a href="/preciding_officer" class=""><button class="btn">Preciding officer panel</button></a>
+                        
+                    </div>
             </div>
-    </div>
+            </div>
+            <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+            <div class="povo-card">
+            <div>
+                <h2>Connect Voter</h2>
+            </div>
 
-    <div class="row">
-            <div class="col l10 m10 s10 offset-l1 offset-m1 offset-s1">
-                <h1></h1>
-                <p>Voter panel is for the students to vote where ballot is shown.This panel should be opened on 
-                    voters computer by logging in with the same credentials as the preciding officer..This will create 
-                    two instances of the same account and the voter and the po will be binded together to form a 
-                    couple of the same thread..
-                </p>
-                <a href="/voter_show_ballot" class="btn waves-effect waves-purple">Student Ballot panel</a>
-                <h1></h1>
+            <div>
+                        
+                    <p>Voter panel is for the students to vote where ballot is shown.This panel should be opened on 
+                        voters computer by logging in with the same credentials as the preciding officer..This will create 
+                        two instances of the same account and the voter and the po will be binded together to form a 
+                        couple of the same thread..
+                    </p>
+                    <div class="povo-btn">
+                        <a href="/voter_show_ballot" class=""><button class="btn">Voter Ballot panel</button> </a>                  
+                    </div>
             </div>
-        </div>
-    </div>
+            </div>
+    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 </div>
+</section>
+</main>
+<div class="circle1"></div>
+<div class="circle2"></div>
+<div class="circle3"></div>
 {% endblock content %}
