@@ -59,6 +59,7 @@
       }
   
       h1{
+        font-family: "Poppins";
         color: #426696;
         font-weight: 600;
         font-size: 2.5rem;
@@ -66,22 +67,32 @@
       }
       
       h2{
+        font-family: "Poppins";
         color: #3b67a3;
         font-weight: 600;
         font-size: 1.5rem;
         opacity: 0.8;
       }
       h3{
+        font-family: "Poppins";
         color: #3b67a3;
         font-weight: 600;
         font-size: 1rem;
         opacity: 0.8;
       }
       p{
+        font-family: "Poppins";
         color: #143769;
         font-weight: 300;
         opacity: 0.9;
         font-size: .786rem;
+      }
+      h5{
+        font-family: "Poppins";
+        color: #426696;
+        font-weight: 250;
+        font-size: .83rem;
+        opacity: 0.8;
       }
 
 
@@ -142,6 +153,77 @@
         right: 4%;
         backdrop-filter: blur(1rem);
       }
+      /*  Moving the circles infinitely  */
+      .circle3 {
+        animation: MoveUpDown 3s infinite;
+        position: absolute;
+        top: 29%;
+        right: 4%;
+        -webkit-transition: color .01s ;
+        transition: color .01s ;
+        transition: background-color .01s ;
+      }
+
+      @keyframes MoveUpDown {
+        0%, 100% {
+          /*bottom: 0;*/
+          
+          top: 29.9%;
+          right: 4.7%;
+        }
+        50% {
+          /*bottom: 100px;*/
+          top: 29.3%;
+          right: 3.3%;
+        }
+      }
+
+      .circle1{
+        animation: do 3s infinite;
+        position: absolute;
+        top: 5%;
+        right: 15%;
+        -webkit-transition: color .01s;
+        transition: color .01s;
+        transition: background-color .01s;
+      }
+
+      @keyframes do {
+        0%, 100% {
+          /*bottom: 0;*/
+          top: 5.5%;
+        right: 15.5%;
+        }
+        50% {
+          /*bottom: 100px;*/
+          top: 4.5%;
+        right: 14.5%;
+        }
+      }
+
+      .circle2{
+        animation: do2 3s infinite;
+        position: absolute;
+        bottom: 5%;
+        left: 10%;
+        -webkit-transition: color .01s ;
+        transition: color .01s ;
+        transition: background-color .01s ;
+      }
+
+      @keyframes do2 {
+        0%, 100% {
+          /*bottom: 0;*/
+          bottom: 4.5%;
+          left: 10.5%;
+        }
+        50% {
+          /*bottom: 100px;*/
+          bottom: 5.5%;
+          left: 9.5%;
+        }
+      }
+
 
       /*   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   */
       .dashboard{
@@ -275,6 +357,14 @@
         flex-direction: column;
         flex: auto;
       }
+      .login-messages{
+        position: absolute;
+        top: 2%;
+        right: 2%;
+      }
+      .login-messages li{
+        list-style: none;
+      }
 
       /*#########################################################################################################################*/
       /*    preciding and voter mutual panel (povo_home.html) */
@@ -313,7 +403,34 @@
 
     /*###############################################################################################################################*/
     /* Preciding officer home panel goes here...  */
-    
+
+    /* is super user then show the div else not show this div */
+    .super-user-area{
+      position: absolute;
+      bottom: 2%;
+      left: 2%;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: .92rem;
+      padding-bottom: .92rem;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+    }
+    .clr-btn{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 7;
+    }
+    .clr-h5{
+      padding-bottom: 1rem;
+    }
+
     .preciding-inside-glass{
       display: flex;
       flex-direction: column;
@@ -513,12 +630,12 @@
       animation-duration: 36s;
     }
     .clocks div:nth-child(12){
-      left: 95%;
+      left: 83%;
       width: 7rem;
       height: 7rem;
       animation-delay: 17s;
       z-index: 1;
-      animation-duration: 46s;
+      animation-duration: 47s;
     }
     .clocks div:nth-child(13){
       left: 90%;
@@ -540,19 +657,147 @@
       left: 13%;
       width: 3rem;
       height: 3rem;
-      animation-delay: 16s;
+      animation-delay: 12s;
       z-index: 1;
-      animation-duration: 100s;
+      animation-duration: 58s;
+    }
+    .clocks div:nth-child(16){
+      left: 33%;
+      width: 5rem;
+      height: 5rem;
+      animation-delay: 0s;
+      z-index: 1;
+      animation-duration: 59s;
     }
     /*@@@@@@@@@@@@  animation ending @@@@@@@@@@@@*/
     .preciding-messages{
       position: absolute;
       top: 2%;
-      right: 2%;
+      right: 1%;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: .65rem;
+      padding-bottom: .55rem;
+      padding-left: 1.1rem;
+      padding-right: 1.1rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+
     }
     .preciding-messages li{
       list-style: none;
       color: #0a1a30;
+      /*  box-shadow:0 0 80px rgb(95, 95, 95),0 0 80px rgb(239, 241, 239),0 0 80px   */
+    }
+    /*@@@@@@@@@@@@@@ Loading bubles till the voter votes  @@@@@@@@@@@@@@@@@@*/
+    .spinner{
+      display: none;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      height: .5rem;
+      margin-bottom: .25rem;
+      position: absolute;
+      top: 0%;
+      left: 50%;
+    }
+    /* Spinner 3Balls Scale */
+    .sp-3balls, .sp-3balls:before, .sp-3balls:after {
+      border-radius: 50%;
+      background-color: rgb(91, 86, 86);
+      width: 18px;
+      height: 18px;
+      transform-origin: center center;
+      display: inline-block;
+    }
+    .sp-3balls {
+      position: relative;
+      background-color: rgba(rgb(236, 109, 217),1);
+      opacity: 1;
+      -webkit-animation: spScaleAlpha 1s infinite linear;
+      animation: spScaleAlpha 1s infinite linear;
+    }
+    .sp-3balls:before, .sp-3balls:after {
+      content: '';
+      position: relative;
+      opacity: 0.25;
+    }
+    .sp-3balls:before {
+      left: 30px;
+      top: 0px;
+      -webkit-animation: spScaleAlphaBefore 1s infinite linear;
+      animation: spScaleAlphaBefore 1s infinite linear;
+    }
+    .sp-3balls:after {
+      left: -30px;
+      top: -23px;
+      -webkit-animation: spScaleAlphaAfter 1s infinite linear;
+      animation: spScaleAlphaAfter 1s infinite linear;
+    }
+    @-webkit-keyframes spScaleAlpha {
+      0% { opacity: 1; }
+      33% { opacity: 0.25; }
+      66% { opacity: 0.25; }
+      100% { opacity: 1; }
+    }
+    @keyframes spScaleAlpha {
+      0% { opacity: 1; }
+      33% {  opacity: 0.25; }
+      66% { opacity: 0.25; }
+      100% {  opacity: 1; }
+    }
+    @-webkit-keyframes spScaleAlphaBefore {
+      0% { opacity: 0.25; }
+      33% { opacity: 1; }
+      66% { opacity: 0.25; }
+    }
+    @keyframes spScaleAlphaBefore {
+      0% { opacity: 0.25; }
+      33% { opacity: 1; }
+      66% { opacity: 0.25; }
+    }
+    @-webkit-keyframes spScaleAlphaAfter {
+      33% { opacity: 0.25; }
+      66% { opacity: 1; }
+      100% { opacity: 0.25; }
+    }
+    @keyframes spScaleAlphaAfter {
+      33% { opacity: 0.25; }
+      66% { opacity: 1; }
+      100% { opacity: 0.25; }
+    }
+    /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  CLock animation goes here ..@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+    #clock {
+      font-family: "Poppins";
+      color: linear-gradient(to right top, #5af0d4, #4fd3e7);
+      font-size: .85rem;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.8;
+    }
+    /*#clock2 {
+      font-family: sans-serif;
+      color: #1c552f;
+      font-size: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }*/
+    #x{
+      font-family: "Poppins";
+      color: linear-gradient(to right top, #5af0d4, #4fd3e7);
+      font-size: .85rem;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.8;
     }
     /* ##############################################################################################################  */
     /*  Voter show ballot..  */

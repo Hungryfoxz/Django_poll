@@ -1,7 +1,7 @@
 from multiprocessing import context
 import string
 from django.contrib import messages
-from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404, HttpResponse
@@ -46,6 +46,7 @@ def login_view(request):
             # Redirect to a success page.
             return render(request, 'povo_home.html')
         else:
+            messages.warning(request,"Wrong Username or Password !")
             # Error returns to the login page again..
             return redirect('login_view')
     else:
@@ -168,5 +169,33 @@ def tables(request):
         position = Positions.objects.all().order_by('priority')
         return render(request, 'results.html',{'candidates': candidates,'positions':position})
 
-################################################## javascript request from the officer ##############################################
+##################################################   Logout the user   #################################################################
+def logout_view(request):
+    if request.user.is_authenticated:
+        logout(request)
+        messages.info(request, "You have successfully logged out.") 
+        return redirect('login_view')
+    else:
+        logout(request)
+        messages.info(request, "You have successfully logged out.") 
+        return redirect('login_view')
 
+################################################   Clear all the votes   #############################################################
+def clear_votes(request):
+    if request.user.is_authenticated:
+        x = Candidate.objects.values_list('id', flat=True)
+        print(x)
+        for ids in x:
+            if Candidate.objects.filter(pk=ids).exists():
+                instance = Candidate.objects.get(pk=ids)
+                #print(instance)                                                # this statement will create an instance to the primary key related to the candidate
+                instance.votes = 0
+                                                                # this statement will add a vote the instance linking to that particular name...
+                instance.save()
+                            # this will finally save the vote to the database for the respected field..
+            else:
+                continue
+        #candidates = Candidate.objects.all()
+        #for x in candidates.name:
+            #candidates.votes = 0
+        return redirect('officer')

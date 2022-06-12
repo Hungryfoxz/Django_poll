@@ -29,8 +29,20 @@
     <div class="circle2"></div>
      <div class="circle3"></div>
 
+    <!--  Messages  -->
 
-
+    {% if messages %}
+    <div class="preciding-messages" id="hide_the_div">
+            <ul class="">
+                {% for message in messages %}
+                <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+                    
+                    <h5><b>{{message}}</b></h5>
+                    
+                {% endfor %}
+            </ul>
+        </div>     
+    {% endif %}
 
 
 <!--Form Design Exclude-->

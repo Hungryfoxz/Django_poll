@@ -19,6 +19,7 @@
        document.getElementById("vote_btn").innerHTML = "New Vote";
        document.getElementById("ms").innerHTML = "One user Voted Successfully !"; 
        document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+       document.getElementById("spinner").style.display = "none";
     });
 </script>
 
@@ -38,7 +39,7 @@
          <!--Test ending of pusher .. -->
 
 
-    <div class="my_glass_container">    
+    <div class="my_glass_container">
 
         <div class="preciding-inside-glass">
 
@@ -63,13 +64,13 @@
             <div class="preciding-tables-button">
                 <p>Get the total results here.</p>
                 <div class="preciding-form-button-main-inside">
-                <a href="/tables"><button class="btn">Total Vote</button></a>
+                <a href="/aGlkZGVuLXJlc3VsdC1wYW5lbAoK"><button class="btn">Total Vote</button></a>
                 </div>
             </div>
             <div class="preciding-logout-button">
             <p>End the session and Logout.</p>
                 <div class="preciding-form-button-main-inside">
-                <a href="#"><button class="btn">Close Vote</button></a>
+                <a href="/logout"><button class="btn">Close Vote</button></a>
                 </div>
             </div>
         </div>
@@ -94,15 +95,27 @@
             {% endif %}
             </div>                    -->
 
-            <!--  Messages  -->
+<!--  Messages  -->
+
             <div class="preciding-messages">
                 <ul>
                     <li>
                         <h5 id="ms">Welcome! {{ user }}</h5>
+                        <h5 id="clock"></h5>
+                        
                     </li>
+                    <div  id="spinner" class="spinner">
+                        <div class="sp-3balls"></div>
+                    </div>
                 </ul>
             </div>
 
+
+<!--  Loading BUbbles animation -->
+            <!--<div  id="spinner" class="spinner">
+                <div class="sp-3balls"></div>
+            </div>-->
+<!-- Rotating circles background animation .. -->
         <div class="clocks">
             <div></div>
             <div></div>
@@ -120,11 +133,71 @@
             <div></div>
             <div></div>
             <div></div>
+            <div></div>
         </div>
-        
+<!--  Digital clock goes here .. -->
+
 </main>
+{% if user.is_superuser %}
+    <div class="super-user-area">
+        <div class="clr-h5">
+            <h5>Clear all vote to Zero.</h5>
+         </div>
+         <div class="clr-btn" style="align-items: center;">
+             <button onclick="clear_me()" class="btn" id="clr">Reset Vote</button>
+         </div>
+    </div>
+{% endif %}
+
+
 <!-- Java script goes here .. -->
 <script>
+    // The analog clock goes here.......
+    function currentTime() {
+    var date = new Date(); /* creating object of Date class */
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+    hour = updateTime(hour);
+    min = updateTime(min);
+    sec = updateTime(sec);
+    document.getElementById("clock").innerText = hour + " : " + min + " : " + sec; /* adding time to the div */
+      var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
+    }
+    function updateTime(k) {
+        if (k < 10) {
+        return "0" + k;
+        }
+        else {
+        return k;
+        }
+    }
+    currentTime(); /* calling currentTime() function to initiate the process */
+   
+
+
+    // Another timer...
+    var x = document.getElementById("x");
+
+    // explain: http://thenewcode.com/942/Create-A-Simple-JavaScript-Clock
+    function zeropadder(n) {
+        return (parseInt(n,10) < 10 ? '0' : '')+n;
+    }
+
+    function updateCurrTime(){
+        var timeNow= new Date(),
+        hh = timeNow.getHours(),
+        mm = timeNow.getMinutes(),
+        ss = timeNow.getSeconds(),
+        formatAMPM = (hh >= 12?'PM':'AM');
+        hh = hh % 12 || 12;
+        
+        x.innerHTML = hh + "<span>:</span>" + zeropadder(mm) + "<span>:</span>" + zeropadder(ss) + " " + formatAMPM;
+        setTimeout(updateTime,1000);
+    }
+    updateCurrTime();
+
+     //Voter add button function ...
     function new_vote(){
         //console.log("Hi");
         let xhr = new XMLHttpRequest();
@@ -138,10 +211,38 @@
         //console.log(x);
         setTimeout(function(){
             document.getElementById("ms").innerHTML = " Waiting for the Voter to vote Now !";
-        }, 3000);
+        }, 6000);
         document.getElementById("vote_btn").disabled = true;
         document.getElementById("vote_btn").innerHTML = "Waiting";
         document.getElementById("p-id").innerHTML = "Waiting for the voter to Submit his/her Vote .";
+        document.getElementById("spinner").style.display = "inline-block";
+    }
+    //clear button for the superuser ....placed here ....
+    function clear_me(){
+        let message = "You are about to clear all the votes from the Candidates . Are you sure you want to perform this action ."
+        var reply = confirm(message);
+        if(reply){
+            var again_reply = confirm("Are you really sure!");
+            if(again_reply){
+                var name = prompt("What is your username?");
+                if(name == '{{user}}'){
+                    const confirmation = prompt("Write 'CONFIRM' to confirm.");
+                    const str_compare = "CONFIRM"
+                    if(confirmation === str_compare){
+                        //console.log(111)
+                        let xhttp = new XMLHttpRequest();
+                        xhttp.open('GET',"/clear_votes");
+                        xhttp.send();
+                        alert("Success! All the votes are cleared from the database.");
+                    }else{
+                        alert("Please try again and write the word 'CONFIRM' to confirm your choice.")
+                    }
+                }else{
+                    alert("Wrong username!")
+                }
+                //alert("Success! All the votes are cleared from the database.")
+            }
+        }
     }
 </script>
 {% endblock content %}
