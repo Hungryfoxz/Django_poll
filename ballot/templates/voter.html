@@ -1,44 +1,189 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+
+    [type="radio"] {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    /* One radio button per line */
+    label {
+      display: block;
+      cursor: pointer;
+      line-height: 2.5em;
+      font-size: 1rem;
+    }
+
+    [type="radio"] + span {
+      display: block;
+    }
+
+    [type="radio"] + span:before {
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.25em;
+      border-radius: 1em;
+      border: 0.125em solid #fff;
+      box-shadow: 0 0 0 0.15em #000;
+      margin-right: 0.75em;
+      transition: 0.5s ease all;
+    }
+
+    [type="radio"]:checked + span:before {
+      background: rgb(1, 1, 1);
+      box-shadow: 0 0 0 0.25em rgb(0, 0, 0);
+    }
+
+    fieldset {
+      font-size: 1em;
+      border: 2px solid rgb(255, 255, 255);
+      padding: 2rem;
+      border-radius: 0.5em;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+      transition: all 1s ease;
+    }
+    fieldset:hover{
+        transform: scale(1.1);
+     }
+
+    legend {
+      color: linear-gradient(to right top, #4dd8bf, #4fd3e7);
+      background: rgb(255, 254, 254);
+      font-size: 1.44rem;
+      padding: 0.25em 1em;
+      border-radius: 1em;
+    }
+
+    .p {
+      text-align: center;
+      font-size: 1rem;
+      padding-top: 120px;
+    }
+    .cand-body,.cand,.cand-btn{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cand-btn p{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    .cand-btn{
+        padding-bottom: 3rem;
+    }
+    .cand-header{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem;
+        padding-top: 1.5rem;
+    }
+    fieldset{
+        width: 54vw; 
+        display: flex; 
+        justify-content: space-around;
+        margin-bottom: 1.45rem;
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.7));
+    }
+    .btnn{
+        background: white;
+        color: black;
+        font-size: 1rem;
+        padding: .8rem 1.8rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 2rem;
+        text-align: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+    }
+    .btnn:hover{
+        background: black;
+        color: white;
+        transition: .5s;
+    }
+  </style>
 </head>
 
 <body>
 
 <!--This is the voter panel to show the ballot-->
-<div class="">
+<main>
+<div class="cand">
+ <!--##########################################################################################################################-->
+    <div class="cand-header">
+        <h1>Vote Your Candidate</h1>
+    </div>
+    <div class="cand-body">
+    <form action=" " method="POST">
+        <!--CSRF validation-->
+        {% csrf_token %}
+        
+        
+        {% for position in positions %}
+        <fieldset>
+            
 
- 
-    
+            <!-- If the position is present in the Positon_Table -->
+            <!-- Printing the position here-->
+            <legend>{{position}}</legend>
 
-<!-- This form records the vote from the voter and also releases the button for the preciding officer on succes to click the new vote again -->
+            {% for candidate in candidates  %}
+                {% if candidate.position == position %}
+                <label for="{{candidate.name}}">
+                    <input type="radio" value="{{candidate.id}}" name="{{position}}" id="{{candidate.name}}" />
+                    <span>{{candidate.name}}</span>
+                </label>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+        {% endfor %}
+        <div class="cand-btn">
+            <p>Final Submit here. Click below </p>
+            <button class="btnn">Vote</button> 
+        </div>
+    </form>
+    </div>
+    <!--end of form-->
+ <!--##########################################################################################################################-->
+
+
+ <!-- This form records the vote from the voter and also releases the button for the preciding officer on succes to click the new vote again -->
     <!-- [========Form starts =========] -->
-    <section class="" id="vote">
+ <!--   <section class="" id="vote">
     <div class="">
         <div class="">
         <form action=" " method="POST">
   
-            <!--CSRF validation-->
+            
             {% csrf_token %}
 
                 {% for position in positions %}
 
-                <!-- If the position is present in the Positon_Table -->
-                <!-- Printing the position here-->
-                <h4 class="purple-text"><i class="material-icons">person_pin</i>{{position}}</h4>
-                <hr style="color: rgb(254, 232, 243);">
-                <h4></h4>
-                <!-- The position is printed in the main container div -->  
+                
+                <h4>{{position}}</h4>
+                <hr>
+                
                 <div class="">
-                <!-- This is div will assign a Row -->
                     <div class="">
                     <ul>
                         {% for candidate in candidates  %}
                             {% if candidate.position == position %}
                                 <li>
-                                    <label>
-                                        <input class="with-gap" name="{{position}}" type="radio" value="{{candidate.id}}" autocomplete="off"/>
-                                        <span class="black-text" style="margin-top: 4px;"><b>{{candidate.name}}</b></span>
-                                    </label>                                
+                                 <label>
+                                  <input class="with-gap" name="{{position}}" type="radio" value="{{candidate.id}}" autocomplete="off"/>
+                                  <span class="black-text" style="margin-top: 4px;"><b>{{candidate.name}}</b></span>
+                                 </label>                                
                                 </li>
                                 <h4></h4>
                             {% endif %}
@@ -49,7 +194,6 @@
                 {% endfor %}  
 
 
-                <!--Button submit/register-->
                 <div class="">
                     <h1></h1>
                   <button class="btn z-depth-5 {{ context.data }}"><i class="material-icons left">account_circle</i> SUBMIT </button>
@@ -58,14 +202,13 @@
     
     
     
-        </form>
-    
-        <!--end of form-->
+
         </div>
     </div>
     
     </section>
-
+-->
 </div>
+</main>
 
 {% endblock content %}

@@ -1,0 +1,119 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background: linear-gradient(to right top, #5af0d4, #4fd3e7);
+
+      font-family: Cabin, serif;
+    }
+
+    [type="radio"] {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    /* One radio button per line */
+    label {
+      display: block;
+      cursor: pointer;
+      line-height: 2.5;
+      font-size: 1.5em;
+    }
+
+    [type="radio"] + span {
+      display: block;
+    }
+
+    [type="radio"] + span:before {
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.25em;
+      border-radius: 1em;
+      border: 0.125em solid #fff;
+      box-shadow: 0 0 0 0.15em #000;
+      margin-right: 0.75em;
+      transition: 0.5s ease all;
+    }
+
+    [type="radio"]:checked + span:before {
+      background: rgb(4, 255, 130);
+      box-shadow: 0 0 0 0.25em rgb(0, 0, 0);
+    }
+
+    fieldset {
+      font-size: 1em;
+      border: 2px solid rgb(255, 255, 255);
+      padding: 2em;
+      border-radius: 0.5em;
+    }
+
+    legend {
+      color: #fff;
+      background: #000;
+      font-size: 1.5rem;
+      padding: 0.25em 1em;
+      border-radius: 1em;
+    }
+
+    .p {
+      text-align: center;
+      font-size: 14px;
+      padding-top: 120px;
+    }
+    .btn {
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 2rem;
+      text-align: center;
+      box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.4);
+    }
+    .btn:hover {
+      color: #4dd8bf;
+      background: rgb(255, 255, 255);
+      transition: 0.5s;
+    }
+  </style>
+  <body>
+    <main style="position: relative; left: 320px">
+      <h1>Vote Your Candidate</h1>
+      <fieldset
+        style="width: 50vw; display: flex; justify-content: space-around"
+      >
+        <legend>President</legend>
+        <label for="Ironman">
+          <input type="radio" value="Ironman" name="President" id="Ironman" />
+          <span>Ironman</span>
+        </label>
+
+        <label for="Captain">
+          <input type="radio" value="Captain" name="President" id="Captain" />
+          <span>Captain America</span>
+        </label>
+
+        <label for="Thor">
+          <input type="radio" value="Thor" name="President" id="Thor" checked />
+          <span>Thor</span>
+        </label>
+      </fieldset>
+
+      <button class="btn">Vote</button>
+    </main>
+  </body>
+</html>

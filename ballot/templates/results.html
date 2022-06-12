@@ -1,46 +1,96 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--
+<style>
+    /*main {
+        background: linear-gradient(to right top, #5af0d4, #4fd3e7);
+        display: flex;
+        justify-content: center;
+        font-family: "Poppins";
+      }*/
+      #table {
+        text-align: center;
+        border-collapse: collapse;
+      }
+  
+      .table-rows {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+  
+      .items {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-bottom: .1rem solid rgba(255, 255, 255, 0.7);
+      }
+
+      .header-row {
+        background-color: rgba(255, 255, 255, 0.31);
+      }
+  
+      .table-rows:hover {
+        background-color: #ffffff;
+        transform: scale(1.1);
+      }
+  
+      .table-rows:hover svg {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      .table-section {
+        background-color: rgba(255, 255, 255, 0.274);
+        padding: 2rem;
+        border-radius: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+      }
+</style>
+-->
 </head>
 
 <body>
-
-
-<div class="results-container">
-    <div class="glass-container-results">
-        <div class="results-table-container">  
-            <table class="styled-table">
-
-                <thead>
-                <tr>
-                    <th>Position</th>
-                    <th>Candidate</th>
-                    <th>Total Votes</th>
-                </tr>
-                </thead>
-
-                {% for position in positions %}
+<main>
+    <div class="table-section">
+        <div class="header-result">
+            <h1>Results</h1>
+        </div>
+        <div id="print-content">
+          <table id="table">
+            <tr class="header-row">
+              <th class="header-item items">NAME</th>
+              <th class="header-item items">POSTION NAME</th>
+              <th class="header-item items" style="padding-left: 2rem;">VOTE</th>
+            </tr>
+            {% for position in positions %}
                     {% for candidate in candidates  %}
                         {% if candidate.position == position %}
-                        <tbody>
-                        <tr>
-                            <td>{{position}}</td>               
-                            <td>{{candidate.name}}</td>
-                            <td>{{candidate.votes}}</td>
-                        </tr>
-                        </tbody>
+                            <tr class="table-rows">
+                            <td class="items">{{candidate.name}}</td>
+                            <td class="items">{{candidate.position}}</td>
+                            <td class="items icon">{{candidate.votes}}</td>
+                            </tr>
                         {% endif %}
                     {% endfor %}
-                {% endfor %}
-
-            </table>
+            {% endfor %}
+          </table>
         </div>
-    </div> 
-</div>
-<!--
-<div id="color1"></div>
-<div id="color2"></div>
-<div id="color3"></div>
-<div id="color4"></div>
--->
+        <div class="print_me">
+            <button onclick="printDiv('print-content')" style="margin-top: 20px" class="btn"> Print Results </button>
+        </div>
+      </div>
+</main>
+
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+     </script>
 {% endblock content %}
