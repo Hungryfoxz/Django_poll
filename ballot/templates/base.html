@@ -35,18 +35,6 @@
     </script>-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     <style>
 
       /*###################################################################################################*/
@@ -226,6 +214,12 @@
 
 
       /*   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   */
+      .jist-header{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
       .dashboard{
         background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
         border-radius: 2rem;
@@ -252,12 +246,11 @@
         border-radius: 2rem;
         text-align: center;
         box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        transition: .8s;
       }
       .btn:hover{
         color: #4dd8bf;
-        background: rgb(255, 255, 255);
-        transition: .5s;
-        
+        background: rgb(255, 255, 255);     
       }
       .dashboard a{
         text-decoration: none;
@@ -845,11 +838,12 @@
       animation-timing-function: ease-in-out;
       animation-name: downsize;
       animation-iteration-count: 1;
+      transition: .7s;
     }
     .butn:hover{
       font-size: 1rem;
       padding: 1rem 1.5rem;
-      transition: .7s;
+      
       animation-timing-function: ease-in-out;
       animation-name: resize;
       animation-iteration-count: 1;      
@@ -866,60 +860,12 @@
     }
     /*####################################################################*/
     /*  Total votes table goes here..  background: linear-gradient(to right top, #5af0d4, #4fd3e7); */
-    /*
-    #color1{
-      position: absolute;
-      background-attachment: fixed;
-      top: 0%;
-      left: 0%;
-      height: 40%;
-      width: 80%;
-      background-color: rgb(229, 135, 225);
-      z-index: -1;
-      background-position: center;
-
-    }
-    
-    #color2{
-      position: absolute;
-      background-attachment: fixed;
-      top: 0%;
-      right: 0%;
-      height: 60%;
-      width: 30%;
-      overflow: hidden;
-      background-color: rgb(226, 145, 177);
-      z-index: -1;
-      background-position: center;
-    }
-    #color3{
-      position: absolute;
-      background-attachment: fixed;
-      bottom: 0%;
-      left: 0%;
-      height: 40%;
-      width: 50%;
-      background-color: rgb(78, 223, 249);
-      z-index: -1;
-      background-position: center;
-    }
-    #color4{
-      position: absolute;
-      background-attachment: fixed;
-      bottom: 0%;
-      right: 0%;
-      height: 40%;
-      width: 50%;
-      background-color: rgb(135, 229, 187);
-      z-index: -1;
-      background-position: center;
-    }
-    */
     #table {
         margin-top: 1rem;
         padding-top: 1rem;
         text-align: center;
         border-collapse: collapse;
+        max-width: 100%;
       }
   
       .table-rows {
@@ -966,33 +912,10 @@
         align-items: center;
         flex-direction: column;
       }
-    /*.styled-table tbody tr:nth-of-type(even) {
-      background-color: #f3f3f3;
-    }*/
-    /*.styled-table tbody tr:last-of-type {
-        border-bottom: .1rem solid #009879;
-    }*/
- 
+
  
  </style>
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
