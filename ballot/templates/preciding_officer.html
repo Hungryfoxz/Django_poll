@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- ############################################### PUSHER JS  ###################################################################-->
 <!-- Pusher Integration is done here ... -->
 <script>
 
@@ -22,22 +23,13 @@
        document.getElementById("spinner").style.display = "none";
     });
 </script>
-
+<!--  ############################################  PUSHER JS ENDING  ######################################################-->
 </head>
 
 <body>
-
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Preciding panel starts here  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
     <!--Preciding officer panel..-->
     <main>
-                       
-        <!--starting Test of pusher .. -->
-                 <!--<h1>Pusher Test</h1>
-                 <p>
-                    Try publishing an event to channel <code>my-channel</code>
-                    with event name <code>my-event</code>.
-                 </p>-->
-         <!--Test ending of pusher .. -->
-
 
     <div class="my_glass_container">
 
@@ -58,8 +50,8 @@
             </div>
             <!--</form>-->
         </div>
-
-        <!--The bottom to buttons to show the results and the close voting button .. -->
+        <!--          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            -->
+        <!--_____________________The bottom to buttons to show the results and the close voting button .________________________. -->
         <div class="preciding-bottom-buttons">
             <div class="preciding-tables-button">
                 <p>Get the total results here.</p>
@@ -76,26 +68,8 @@
         </div>
     </div>
    </div> 
-    
-
-            <!--Hiding the message after 3 seconds..-->
-
-            <!-- Success message shown here!!!   -->
-            <!--[++]  This will be an alert.  [++]-->
-<!--        <div class="preciding-messages">
-            {% if messages %}
-                <ul class="">
-                    {% for message in messages %}
-                    <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
-                        
-                        <h6 id="hide_the_div"> <b>{{message}}</b></h6>
-                        
-                    {% endfor %}
-                </ul>
-            {% endif %}
-            </div>                    -->
-
-<!--  Messages  -->
+  <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->  
+  <!--  ___________________________________________________Messages____________________________________________________________  -->
 
             <div class="preciding-messages">
                 <ul>
@@ -109,13 +83,8 @@
                     </div>
                 </ul>
             </div>
-
-
-<!--  Loading BUbbles animation -->
-            <!--<div  id="spinner" class="spinner">
-                <div class="sp-3balls"></div>
-            </div>-->
-<!-- Rotating circles background animation .. -->
+<!--   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!-- _________________________________________Rotating circles background animation .._________________________________________ -->
         <div class="clocks">
             <div></div>
             <div></div>
@@ -138,6 +107,8 @@
 <!--  Digital clock goes here .. -->
 
 </main>
+<!--########################################     Only for super user  ###########################################################-->
+<!-- _______________________________________      Super user only   ______________________________________________________-->
 {% if user.is_superuser %}
     <div class="super-user-area">
         <div class="clr-h5">
@@ -149,8 +120,8 @@
     </div>
 {% endif %}
 
-
-<!-- Java script goes here .. -->
+<!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
+<!-- _______________________________________________Java script goes here .._______________________________________________________ -->
 <script>
     // The analog clock goes here.......
     function currentTime() {
@@ -174,49 +145,25 @@
     }
     currentTime(); /* calling currentTime() function to initiate the process */
    
-
-
-    // Another timer...
-    var x = document.getElementById("x");
-
-    // explain: http://thenewcode.com/942/Create-A-Simple-JavaScript-Clock
-    function zeropadder(n) {
-        return (parseInt(n,10) < 10 ? '0' : '')+n;
-    }
-
-    function updateCurrTime(){
-        var timeNow= new Date(),
-        hh = timeNow.getHours(),
-        mm = timeNow.getMinutes(),
-        ss = timeNow.getSeconds(),
-        formatAMPM = (hh >= 12?'PM':'AM');
-        hh = hh % 12 || 12;
-        
-        x.innerHTML = hh + "<span>:</span>" + zeropadder(mm) + "<span>:</span>" + zeropadder(ss) + " " + formatAMPM;
-        setTimeout(updateTime,1000);
-    }
-    updateCurrTime();
-
-     //Voter add button function ...
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
+     //_________________________________________Voter add button function ...___________________________________________//
     function new_vote(){
         //console.log("Hi");
         let xhr = new XMLHttpRequest();
         xhr.open('GET',"/admitted_from_po");
         xhr.send();
         //console.log(1);
-        //const x = document.getElementById("ms");
-        //x.innerHTML = "Hiiiiii!!";
         document.getElementById("ms").innerHTML = " The Voter can vote Now !";
         //console.log(2);
-        //console.log(x);
         setTimeout(function(){
-            document.getElementById("ms").innerHTML = " Waiting for the Voter to vote Now !";
-        }, 6000);
+                document.getElementById("ms").innerHTML = " Waiting for the Voter to vote Now !";
+            }, 6000);
         document.getElementById("vote_btn").disabled = true;
         document.getElementById("vote_btn").innerHTML = "Waiting";
         document.getElementById("p-id").innerHTML = "Waiting for the voter to Submit his/her Vote .";
         document.getElementById("spinner").style.display = "inline-block";
     }
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
     //clear button for the superuser ....placed here ....
     function clear_me(){
         let message = "You are about to clear all the votes from the Candidates . Are you sure you want to perform this action ."
@@ -245,6 +192,7 @@
         }
     }
 </script>
+<!-- __________________________________________________  END  ____________________________________________________________-->
 {% endblock content %}
 
 

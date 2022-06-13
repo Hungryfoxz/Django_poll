@@ -4,7 +4,7 @@
 </head>
 
 <body>
-    
+    <!--  =======================================     MAIN SECTION FOR THE LOGIN FORM     ====================================  -->
     <main>
         <div class="my_glass_container">
             <div class="my-form">
@@ -24,12 +24,12 @@
        
         </div>
     </main>
-
+    <!--  ************************************************  END  of the FORM  ************************************************  -->
     <div class="circle1"></div>
     <div class="circle2"></div>
      <div class="circle3"></div>
-
-    <!--  Messages  -->
+    <!--#####################################################################################################################-->
+    <!-- ____________________________________________________ Messages _____________________________________________________ -->
 
     {% if messages %}
     <div class="preciding-messages" id="hide_the_div">
@@ -44,21 +44,5 @@
         </div>     
     {% endif %}
 
-
-<!--Form Design Exclude-->
-<!--   <div class="">
-        <h1>Login</h1>
-        <form  method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="">
-                {{form}}
-                <h1></h1>
-                 <input type="submit" value="login" class="">
-             </div>
-        </div>
-        </form>
-    </div>
---> 
-
+<!--   +++++++++++++++++++++++++++++++++++++++++++++++++++    END HERE  ++++++++++++++++++++++++++++++++++++++++++++++++    -->
 {% endblock content %}

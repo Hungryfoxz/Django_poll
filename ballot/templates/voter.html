@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <style>
 
     [type="radio"] {
@@ -114,6 +115,7 @@
 
     }
   </style>
+  
 </head>
 
 <body>
@@ -157,58 +159,6 @@
     </div>
     <!--end of form-->
  <!--##########################################################################################################################-->
-
-
- <!-- This form records the vote from the voter and also releases the button for the preciding officer on succes to click the new vote again -->
-    <!-- [========Form starts =========] -->
- <!--   <section class="" id="vote">
-    <div class="">
-        <div class="">
-        <form action=" " method="POST">
-  
-            
-            {% csrf_token %}
-
-                {% for position in positions %}
-
-                
-                <h4>{{position}}</h4>
-                <hr>
-                
-                <div class="">
-                    <div class="">
-                    <ul>
-                        {% for candidate in candidates  %}
-                            {% if candidate.position == position %}
-                                <li>
-                                 <label>
-                                  <input class="with-gap" name="{{position}}" type="radio" value="{{candidate.id}}" autocomplete="off"/>
-                                  <span class="black-text" style="margin-top: 4px;"><b>{{candidate.name}}</b></span>
-                                 </label>                                
-                                </li>
-                                <h4></h4>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                    </div>
-                </div>
-                {% endfor %}  
-
-
-                <div class="">
-                    <h1></h1>
-                  <button class="btn z-depth-5 {{ context.data }}"><i class="material-icons left">account_circle</i> SUBMIT </button>
-                </div>
-                <p></p>
-    
-    
-    
-
-        </div>
-    </div>
-    
-    </section>
--->
 </div>
 </main>
 
