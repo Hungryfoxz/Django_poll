@@ -14,4 +14,5 @@ urlpatterns = [
     path("aGlkZGVuLXJlc3VsdC1wYW5lbAoK/", views.tables, name= 'tables'),
     path("logout/", views.logout_view, name= 'logout_view'),
     path("clear_votes/", views.clear_votes, name= 'clear_votes'),
+    path("mock_panel/", views.mock_panel, name= 'mock_panel'),
 ]

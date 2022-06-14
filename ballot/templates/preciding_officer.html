@@ -27,47 +27,61 @@
 </head>
 
 <body>
+
+
+
 <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Preciding panel starts here  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
     <!--Preciding officer panel..-->
     <main>
+
+    {% if user.is_superuser %}
+    
+<!--########################################     Only for super user  ###########################################################-->
+<!-- _______________________________________      Super user only   ______________________________________________________-->
 
     <div class="my_glass_container">
 
         <div class="preciding-inside-glass">
 
+        
         <div class="preciding-header">
-            <h1>Actions of the Preciding Officer</h1>
+            <h1>Super Admin Panel</h1>
         </div>
 
         <div class="preciding-form-button-main">
             <!--<form action=" " method="post">
                 {% csrf_token%}-->
             <div>
-                <p id="p-id">Click below to allow the user to submit his vote.</p>
+                <p>Go to JIST Voting Admin panel.</p>
                 <div class="preciding-form-button-main-inside">            
-                    <!--<a href="/admitted_from_po">--><button onclick="new_vote()" class="btn bt" id="vote_btn">New Vote</button></a>
+                    <a href="/admin"><button class="btn bt" id="vote_btn">Admin Panel</button></a>
                 </div>
             </div>
             <!--</form>-->
         </div>
+
+
         <!--          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            -->
         <!--_____________________The bottom to buttons to show the results and the close voting button .________________________. -->
         <div class="preciding-bottom-buttons">
             <div class="preciding-tables-button">
-                <p>Get the total results here.</p>
+                <p>Get the total results of Elections.</p>
                 <div class="preciding-form-button-main-inside">
                 <a href="/aGlkZGVuLXJlc3VsdC1wYW5lbAoK"><button class="btn">Total Vote</button></a>
                 </div>
             </div>
             <div class="preciding-logout-button">
-            <p>End the session and Logout.</p>
+            <p>Add/Remove presiding officer.</p>
                 <div class="preciding-form-button-main-inside">
-                <a href="/logout"><button class="btn">Close Vote</button></a>
+                <a href="/admin/auth/user/"><button class="btn">Edit here</button></a>
                 </div>
             </div>
         </div>
     </div>
    </div> 
+
+
+
   <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->  
   <!--  ___________________________________________________Messages____________________________________________________________  -->
 
@@ -83,6 +97,9 @@
                     </div>
                 </ul>
             </div>
+
+
+
 <!--   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <!-- _________________________________________Rotating circles background animation .._________________________________________ -->
         <div class="clocks">
@@ -104,11 +121,105 @@
             <div></div>
             <div></div>
         </div>
-<!--  Digital clock goes here .. -->
 
+
+
+
+{% else %}
+
+<!--########################################     Not for super user  ###########################################################-->
+<!-- _______________________________________      Preciding Officer only   ______________________________________________________-->
+
+<div class="my_glass_container">
+
+    <div class="preciding-inside-glass">
+
+    <div class="preciding-header">
+        <h1>Actions of the Preciding Officer</h1>
+    </div>
+
+    <div class="preciding-form-button-main">
+        <!--<form action=" " method="post">
+            {% csrf_token%}-->
+        <div>
+            <p id="p-id">Click below to allow the user to submit his vote.</p>
+            <div class="preciding-form-button-main-inside">            
+                <!--<a href="/admitted_from_po">--><button onclick="new_vote()" class="btn bt" id="vote_btn">New Vote</button></a>
+            </div>
+        </div>
+        <!--</form>-->
+    </div>
+
+
+    <!--          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            -->
+    <!--_____________________The bottom to buttons to show the results and the close voting button .________________________. -->
+    <div class="preciding-bottom-buttons">
+        <div class="preciding-tables-button">
+            <p>Total students Voted till now.</p>
+            <div class="preciding-form-button-main-inside">
+            <a href="#"><button class="btn">Total Voted</button></a>
+            </div>
+        </div>
+        <div class="preciding-logout-button">
+        <p>End the session and Logout.</p>
+            <div class="preciding-form-button-main-inside">
+            <a href="/logout"><button class="btn">Close Vote</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div> 
+
+
+
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->  
+<!--  ___________________________________________________Messages____________________________________________________________  -->
+
+        <div class="preciding-messages">
+            <ul>
+                <li>
+                    <h5 id="ms">Welcome! {{ user }}</h5>
+                    <h5 id="clock"></h5>
+                    
+                </li>
+                <div  id="spinner" class="spinner">
+                    <div class="sp-3balls"></div>
+                </div>
+            </ul>
+        </div>
+
+
+
+<!--   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!-- _________________________________________Rotating circles background animation .._________________________________________ -->
+    <div class="clocks">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+{% endif %}
 </main>
+
+
+
 <!--########################################     Only for super user  ###########################################################-->
 <!-- _______________________________________      Super user only   ______________________________________________________-->
+
 {% if user.is_superuser %}
     <div class="super-user-area">
         <div class="clr-h5">
@@ -118,7 +229,18 @@
              <button onclick="clear_me()" class="btn" id="clr">Reset Vote</button>
          </div>
     </div>
+    
+{% else %}
+    <div class="super-user-area for-presiding">
+        <div class="clr-h5">
+            <h5>Start a Mock poll</h5>
+        </div>
+        <div class="clr-btn" style="align-items: center;">
+            <a href="/mock_panel"><button class="btn" id="clr">Mock Poll</button></a>
+        </div>
+    </div>
 {% endif %}
+
 
 <!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
 <!-- _______________________________________________Java script goes here .._______________________________________________________ -->

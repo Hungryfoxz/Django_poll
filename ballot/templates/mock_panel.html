@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!--  ===================================  Styles unique to this page goes here  ===========================================    -->
+<style>
+
+    [type="radio"] {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    /* One radio button per line */
+    label {
+      display: block;
+      cursor: pointer;
+      line-height: 2.5em;
+      font-size: 1rem;
+    }
+
+    [type="radio"] + span {
+      display: block;
+    }
+
+    [type="radio"] + span:before {
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.25em;
+      border-radius: 1em;
+      border: 0.125em solid #fff;
+      box-shadow: 0 0 0 0.15em #000;
+      margin-right: 0.75em;
+      transition: 0.5s ease all;
+    }
+
+    [type="radio"]:checked + span:before {
+      background: rgb(1, 1, 1);
+      box-shadow: 0 0 0 0.25em rgb(0, 0, 0);
+    }
+
+    fieldset {
+      font-size: 1em;
+      border: 2px solid rgb(255, 255, 255);
+      padding: 1rem;
+      border-radius: 0.5em;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+      transition: all 1s ease;
+    }
+    fieldset:hover{
+        transform: scale(1.025);
+     }
+
+    legend {
+      color: linear-gradient(to right top, #4dd8bf, #4fd3e7);
+      background: rgb(255, 254, 254);
+      font-size: 1.44rem;
+      padding: 0.25em 1em;
+      border-radius: 1em;
+    }
+
+    .p {
+      text-align: center;
+      font-size: 1rem;
+      padding-top: 120px;
+    }
+    .cand-body,.cand,.cand-btn{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cand-btn p{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    .cand-btn{
+        padding-bottom: 3rem;
+    }
+    .cand-header{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem;
+        padding-top: 1.5rem;
+    }
+    fieldset{
+        width: 48vw; 
+        display: flex; 
+        justify-content: space-around;
+        margin-bottom: 1.45rem;
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.7));
+    }
+    .btnn{
+        background: white;
+        color: black;
+        font-size: 1rem;
+        padding: .8rem 1.8rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 2rem;
+        text-align: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        transition: .5s;
+    }
+    .btnn:hover{
+        background: black;
+        color: white;
+
+    }
+    .imgu{
+        height: 12rem;
+        width: 8rem;
+        border-radius: .5rem;
+    }
+  </style>
+  <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!--   ============================================    End of styles    =========================================================-->
+</head>
+
+<body>
+<!--   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    mock_panel.html body starts here    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+  <main>
+    <div class="cand">
+        <!--##########################################################################################################################-->
+           <div class="cand-header">
+               <h1>Mock Voting </h1>
+           </div>
+           <div class="cand-body">
+             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  FOrm section for the VOte submission  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+           <form action=" " method="POST">
+               <!--CSRF validation-->
+               {% csrf_token %}
+               
+               <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   python code for fetching the candidates $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
+               {% for pos in position %}
+               <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
+               <fieldset>
+       
+                   <!-- If the position is present in the Positon_Table -->
+                   <!-- Printing the position here-->
+                   <legend>{{pos}}</legend>
+                   <!-- ==============================================================================================  -->
+                   {% for candidate in candidates  %}
+                   <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                       {% if candidate.position == pos %}
+                       <!-- ====================================================================== -->
+                       <label for="{{candidate.name}}">
+                           <input type="radio" value="{{candidate.id}}" name="{{pos}}" id="{{candidate.name}}" />
+                           <span>{{candidate.name}}</span>
+                           <img class="imgu" src="/{{ candidate.image}}" alt="candidate_image.jpg">
+                       </label>
+                       <!-- =====================================================================  -->
+                       {% endif %}
+                       <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                   {% endfor %}
+                   <!-- ==============================================================================================  -->
+               </fieldset>
+               {% endfor %}
+               <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
+               <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Submision button here @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   -->
+               <div class="cand-btn">
+                   <p>Final Submit here. Click below </p>
+                   <button class="btnn">Vote</button> 
+               </div>
+           </form>
+           </div>
+           <!--end of form-->
+        <!--##########################################################################################################################-->
+       </div>
+       
+  </main>
+
+<!-- ################################################  End of the mock_panel.html #####################################################  -->
+{% endblock content %}

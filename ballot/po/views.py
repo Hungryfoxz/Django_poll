@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404, HttpResponse
 from django.shortcuts import HttpResponseRedirect, redirect, render, reverse
-from .models import Candidate, Positions, extra_field
+from .models import Candidate, Mock, Mock_Positions, Positions, extra_field
 # Integrating Pusher js Here
 import pusher
 pusher_client = pusher.Pusher(
@@ -199,3 +199,14 @@ def clear_votes(request):
         #for x in candidates.name:
             #candidates.votes = 0
         return redirect('officer')
+
+################################################  Mock panel  ########################################################################### 
+def mock_panel(request):
+    if request.user.is_authenticated:
+        mock = Mock.objects.all()
+        position = Mock_Positions.objects.all().order_by('priority')
+        return render(request, 'mock_panel.html',{'candidates': mock,'position':position})
+
+############################################### Fetch Images ##########################################################################
+
+      

@@ -2,7 +2,6 @@ from pickle import FALSE
 from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
-
 # Create your models here. 
 
                                                                                                     # ADDING FIELD TO USERS
@@ -34,7 +33,9 @@ class Positions(models.Model):
 class Candidate(models.Model):
     name = models.CharField(max_length=80)
     position = models.ForeignKey(Positions, on_delete=models.CASCADE)
+    #upload = models.ImageField(upload_to ='uploads/', height_field=None, width_field=None)
     votes = models.IntegerField(default=0)
+
     
 
     #def __str__(self):
@@ -46,5 +47,41 @@ class Candidate(models.Model):
     class Meta:
         verbose_name_plural = "Candidate List"
 
-                                                                                                            # 
+                                                                                                            # Total students Voted..
 #[+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
+class Voted(models.Model):
+    Total_Students_Voted = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.Total_Students_Voted 
+
+    class Meta:
+        verbose_name_plural = "Zone_Total_Students_Voted"
+
+
+                                                                                                            # Mock positions..
+#[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
+class Mock_Positions(models.Model):
+    name = models.CharField(max_length=80)
+    priority = models.IntegerField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Table Mock Position"        
+
+                                                                                                            # Mock Poll Table..
+#[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
+class Mock(models.Model):
+    name = models.CharField(max_length=80)
+    #position = models.CharField( max_length=25, choices=Position_choices)
+    position = models.ForeignKey(Mock_Positions, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to ='static/', height_field=None, width_field=None)
+    votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name 
+
+    class Meta:
+        verbose_name_plural = "Table Mock Poll"
