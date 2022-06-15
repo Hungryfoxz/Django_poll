@@ -1,5 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<style>
+    .super-user-area-p{
+      position: absolute;
+      bottom: 2%;
+      left: 2%;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: .92rem;
+      padding-bottom: .92rem;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+    }
+    .preciding-messages-mock{
+      position: absolute;
+      top: 2%;
+      left: 1%;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: .65rem;
+      padding-bottom: .55rem;
+      padding-left: 1.1rem;
+      padding-right: 1.1rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
+      box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+
+    }
+    .preciding-messages-mock li{
+      list-style: none;
+      color: #0a1a30;
+      /*  box-shadow:0 0 80px rgb(95, 95, 95),0 0 80px rgb(239, 241, 239),0 0 80px   */
+    }
+</style>
 <!-- ############################################### PUSHER JS  ###################################################################-->
 <!-- Pusher Integration is done here ... -->
 <script>
@@ -23,6 +61,7 @@
        document.getElementById("spinner").style.display = "none";
     });
 </script>
+
 <!--  ############################################  PUSHER JS ENDING  ######################################################-->
 </head>
 
@@ -157,7 +196,7 @@
         <div class="preciding-tables-button">
             <p>Total students Voted till now.</p>
             <div class="preciding-form-button-main-inside">
-            <a href="#"><button class="btn">Total Voted</button></a>
+            <a href="/total_students_voted"><button class="btn">Total Voted</button></a>
             </div>
         </div>
         <div class="preciding-logout-button">
@@ -231,14 +270,33 @@
     </div>
     
 {% else %}
-    <div class="super-user-area for-presiding">
+    <div class="super-user-area-p for-presiding">
         <div class="clr-h5">
             <h5>Start a Mock poll</h5>
         </div>
         <div class="clr-btn" style="align-items: center;">
-            <a href="/mock_panel"><button class="btn" id="clr">Mock Poll</button></a>
+            <a href="/mock_panel"><button class="btn">Mock Poll</button></a>
+        </div>
+        <div class="clr-h5" style="padding-top: 1rem;">
+            <h5>Mock poll Results</h5>
+        </div>
+        <div class="clr-btn" style="align-items: center;">
+            <a href="/mock_results"><button class="btn">Mock Results</button></a>
         </div>
     </div>
+
+    {% if messages %}
+    <div class="preciding-messages-mock" id="hide_the_div">
+            <ul class="">
+                {% for message in messages %}
+                <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+                    
+                    <h5><b>{{message}}</b></h5>
+                    
+                {% endfor %}
+            </ul>
+        </div>     
+    {% endif %}
 {% endif %}
 
 

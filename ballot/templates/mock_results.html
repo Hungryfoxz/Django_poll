@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- <meta http-equiv="refresh" content="50"> -->
+<style>
+    .mock-res-he{
+        font: 3rem;
+        color: #183050;
+    }
+    .mock_xtra_btn{
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+        /* background: linear-gradient(to right bottom, rgba(255,255,255,1), rgba(255,255,255,0.6)); */
+        border-radius: 2rem;
+        z-index: 5;
+        backdrop-filter: blur(1rem);
+        /* box-shadow: 6px 6px 20px rgba(122,122,122,0.4); */
+        height: 15%;
+        width: 15%;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+    }
+    .btnn{
+        background: black;
+        color: white;
+        font-size: 1rem;
+        padding: .8rem 1.8rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 2rem;
+        text-align: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        transition: .5s;
+    }
+    .btnn:hover{
+        background: white;
+        color: black;
+
+    }
+</style>
+</head>
+
+<body>
+<!--   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  mock_results.html body starts here    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+<main>
+    <div class="table-section">
+        <div class="header-result">
+            <h1 class="mock-res-he">Mock-Results</h1>
+        </div>
+        <div id="print-content">
+          <table id="table">
+            <tr class="header-row">
+              <th class="header-item items">NAME</th>
+              <th class="header-item items">POSTION NAME</th>
+              <th class="header-item items" style="padding-left: 2rem;">VOTE</th>
+            </tr>
+            
+            {% for posi in positions %}
+            
+                    {% for candidate in candidates  %}
+                        {% if candidate.position == posi %}
+                            <tr class="table-rows">
+                            <td class="items">{{candidate.name}}</td>
+                            <td class="items">{{candidate.position}}</td>
+                            <td class="items icon">{{candidate.votes}}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+            {% endfor %}
+          </table>
+        </div>
+        
+        <div class="print_me">
+            <button onclick="printDiv('print-content')" style="margin-top: 20px" class="btnn"> Print Results </button>
+        </div>
+        
+        
+       </div>
+</main>
+
+
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  END of the MAIN sections @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!--   _______________________________________________  Background circles here _____________________________________________________  -->
+<div class="circle1"></div>
+<div class="circle2"></div>
+<div class="circle3"></div>
+
+
+
+<!-- ########################################################  Extra Buttons  ##################################################### -->
+
+<div class="mock_xtra_btn">
+    <div class="mock-clr">
+        <!-- <p>Clear all the votes.</p> -->
+        <a href="/mock_clear"><button  class="btnn">CLear Results</button></a>
+    </div>
+    <div class="mock-back">
+        <!-- <p>Preciding Officer panel.</p> -->
+        <a href="/preciding_officer"><button class="btnn">Go Back Home</button></a>
+    </div>
+</div>
+
+
+<!-- {% comment %} #####################################  JavaSscript goes here ############################## {% endcomment %} -->
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+    // //  Clear results..
+    // function mock_clr(){
+    //     let message = "You are about to clear all the votes from the Candidates . Are you sure you want to perform this action ."
+    //     var reply = confirm(message);
+    //     if(reply){
+    //         var again_reply = confirm("Are you really sure!");
+    //         if(again_reply){
+    //                     //console.log(111)
+    //                     let xhttp = new XMLHttpRequest();
+    //                     xhttp.open('GET',"/mock_clear");
+    //                     xhttp.send();
+    //                     alert("Success! All the votes are cleared from the database.");
+    //                    //alert("Success! All the votes are cleared from the database.")
+    //         }
+    //     }
+    // }
+ </script>
+<!-- ################################################  End of the index.html #####################################################  -->
+{% endblock content %}

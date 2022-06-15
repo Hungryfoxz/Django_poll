@@ -15,4 +15,7 @@ urlpatterns = [
     path("logout/", views.logout_view, name= 'logout_view'),
     path("clear_votes/", views.clear_votes, name= 'clear_votes'),
     path("mock_panel/", views.mock_panel, name= 'mock_panel'),
+    path("total_students_voted/", views.total_students_voted, name='total_students_voted'),
+    path("mock_results/", views.mock_results, name='mock_results'),
+    path("mock_clear/", views.mock_clear, name='mock_clear'),
 ]

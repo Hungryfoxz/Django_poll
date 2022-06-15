@@ -18,6 +18,8 @@ pusher_client = pusher.Pusher(
 )
 # Create your views here.
  
+#Create a global variable to chechk the no. of students voted...
+voted = 0 
 #############################################  Index.html  ######################################################################
 
 def index(request):
@@ -119,7 +121,8 @@ def voter(request):
                 #print(channel_name)
                 pusher_client.trigger([str(request.user.id)], 'my-event', {'message': 'The Voter has Voted Successfully.'})
                 #########################################################################
-                
+                # COunter to increase the no of students voted...
+                voted += 1
                 return render(request, 'voter_show_ballot.html')#, ({'context':context})
             candidates = Candidate.objects.all()
             position = Positions.objects.all().order_by('priority')
@@ -203,10 +206,69 @@ def clear_votes(request):
 ################################################  Mock panel  ########################################################################### 
 def mock_panel(request):
     if request.user.is_authenticated:
+        #count the votes if the request is post request...
+        if request.method == 'POST':
+                for position in Mock_Positions.objects.only('name'):
+                                                                # it will check for the position in the Positions table..
+                        choices = request.POST.get(str(position))
+                                                                # this will get the id of the selected person from the request..
+                        if Mock.objects.filter(pk=choices).exists():
+                            instance = Mock.objects.get(pk=choices)
+                                                                # this statement will create an instance to the primary key related to the candidate
+                            instance.votes += 1
+                                                                # this statement will add a vote the instance linking to that particular name...
+                            instance.save()
+                            # this will finally save the vote to the database for the respected field..
+                        else:
+                            continue
+                messages.success(request, 'Congratulation! Mock vote has been recorded..')
+                #context = { 'data':'disabled'}
+                return render(request, 'preciding_officer.html')#, ({'context':context})
+                
+
         mock = Mock.objects.all()
         position = Mock_Positions.objects.all().order_by('priority')
         return render(request, 'mock_panel.html',{'candidates': mock,'position':position})
 
-############################################### Fetch Images ##########################################################################
+############################################### total_students_voted ##################################################################
 
+def total_students_voted(request):
+    if request.user.is_authenticated:
+        return render(request, 'total_students_voted.html')
+    else:
+        return redirect('login')
+
+##############################################     mock_results    ###################################################################
+
+def mock_results(request):
+    if request.user.is_authenticated:
+        mock = Mock.objects.all()
+        position = Mock_Positions.objects.all().order_by('priority')
+        print(mock)
+        print(position)
+        return render(request, 'mock_results.html',{'candidates': mock,'positions':position})
+        # return render(request, 'mock_results.html')
+    else:
+        return redirect('login')
+
+########################################## CLear mock poll results #################################################################
+def mock_clear(request):
+    if request.user.is_authenticated:
+        x = Mock.objects.values_list('id', flat=True)
+        print(x)
+        for ids in x:
+            if Mock.objects.filter(pk=ids).exists():
+                instance = Mock.objects.get(pk=ids)
+                #print(instance)                                                # this statement will create an instance to the primary key related to the candidate
+                instance.votes = 0
+                                                                # this statement will add a vote the instance linking to that particular name...
+                instance.save()
+                            # this will finally save the vote to the database for the respected field..
+            else:
+                continue
+        #candidates = Candidate.objects.all()
+        #for x in candidates.name:
+            #candidates.votes = 0
+        messages.success(request, " All votes are cleared from the Mock Poll Database..")
+        return render(request, 'preciding_officer.html')
       
