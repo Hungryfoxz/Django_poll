@@ -18,4 +18,5 @@ urlpatterns = [
     path("total_students_voted/", views.total_students_voted, name='total_students_voted'),
     path("mock_results/", views.mock_results, name='mock_results'),
     path("mock_clear/", views.mock_clear, name='mock_clear'),
+    #path("my_ajax_check/",views.my_ajax_check, name='my_ajax_check'),
 ]

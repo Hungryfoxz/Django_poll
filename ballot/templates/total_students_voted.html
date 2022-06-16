@@ -32,6 +32,11 @@
         font-size: 2rem;
         color: #315789;
     }
+    .voted-back-butn{
+        position: absolute;
+        top: 2%;
+        right: 2%;
+    }
 </style>
 </head>
 
@@ -41,7 +46,7 @@
         <section class="my_glass_container_stu">
             <div class="stu-count">
                     <h3>Total Voters voted till Now.</h3>
-                    <p class="students"><span class="students-2">All Total </span>1212<span class="students-2"> Students</span></p>
+                    <p class="students"><span class="students-2">All Total </span>{{ total.data }}<span class="students-2"> Students</span></p>
                 
             </div>
         </section>
@@ -51,5 +56,8 @@
 <div class="circle1"></div>
 <div class="circle2"></div>
 <div class="circle3"></div>
+<div class="voted-back-butn">
+    <a href="/preciding_officer"><button class="btn">Back</button></a>
+</div>
   <!-- ################################################  End of the index.html #####################################################  -->
 {% endblock content %}

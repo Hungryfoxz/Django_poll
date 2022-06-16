@@ -5,26 +5,27 @@
 <main>
 <section class="my_glass_container">
 <div class="povo-home-main">
+    {% if user.is_superuser %}
     <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
             <div class="povo-card">
                 <div>
-                <h2>Preciding officer Home</h2>
+                <h2>WECOME</h2>
                 </div>
 
             <div>
                     
                         
-                    <p>Preciding officer panel to show the officer's duties..This is the place where the 
-                        the officer will perform his actions like New ballot,Show vote,Close Vote.
+                    <p>This Section is available only to the Admin. The Admin has to Ability to add, 
+                        delete, modify everything in the database.
                     </p>
                     <div class="povo-btn">
-                        <a href="/preciding_officer" class=""><button class="btn">Preciding officer panel</button></a>
+                        <a href="/preciding_officer" class=""><button class="btn">Admin panel</button></a>
                         
                     </div>
             </div>
             </div>
             <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-            <div class="povo-card">
+            <!--<div class="povo-card">
             <div>
                 <h2>Connect Voter</h2>
             </div>
@@ -40,8 +41,50 @@
                         <a href="/voter_show_ballot" class=""><button class="btn">Voter Ballot panel</button> </a>                  
                     </div>
             </div>
+            </div>-->
+            
+            <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+        
+    {% else%}<!--  $$$$$$$$$$$$$$$$  For Preciding Officer %%%%%%%%%%%%%%%%%%%%   -->
+
+             <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+             <div class="povo-card">
+                <div>
+                <h2>Presiding officer Home</h2>
+                </div>
+
+            <div>
+                    
+                        
+                    <p>Presiding officer panel to show the officer's duties..This is the place where the 
+                        the officer will perform his actions like New ballot,Show vote,Close Vote.
+                    </p>
+                    <div class="povo-btn">
+                        <a href="/preciding_officer" class=""><button class="btn">Presiding officer panel</button></a>
+                        
+                    </div>
             </div>
-    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+            </div>
+            <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+            <div class="povo-card">
+            <div>
+                <h2>Connect Voter</h2>
+            </div>
+
+            <div>
+                        
+                    <p>Voter panel is for the students to vote where ballot is shown.This panel should be opened on 
+                        voters computer by logging in with the same credentials as the presiding officer..This will create 
+                        two instances of the same account and the voter and the po will be binded together to form a 
+                        couple of the same thread..
+                    </p>
+                    <div class="povo-btn">
+                        <a href="/voter_show_ballot" class=""><button class="btn">Voter Ballot panel</button> </a>                  
+                    </div>
+            </div>
+            </div>
+     {% endif %}       
+            <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 </div>
 </section>
 </main>

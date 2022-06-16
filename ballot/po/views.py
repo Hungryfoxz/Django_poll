@@ -1,5 +1,4 @@
 from multiprocessing import context
-import string
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
@@ -7,7 +6,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404, HttpResponse
 from django.shortcuts import HttpResponseRedirect, redirect, render, reverse
 from .models import Candidate, Mock, Mock_Positions, Positions, extra_field
-# Integrating Pusher js Here
+
+
+
+# # Integrating Pusher js Here
 import pusher
 pusher_client = pusher.Pusher(
   app_id='1422023',
@@ -16,6 +18,8 @@ pusher_client = pusher.Pusher(
   cluster='ap2',
   ssl=True
 )
+
+
 # Create your views here.
  
 #Create a global variable to chechk the no. of students voted...
@@ -122,7 +126,8 @@ def voter(request):
                 pusher_client.trigger([str(request.user.id)], 'my-event', {'message': 'The Voter has Voted Successfully.'})
                 #########################################################################
                 # COunter to increase the no of students voted...
-                voted += 1
+                global voted
+                voted +=1 
                 return render(request, 'voter_show_ballot.html')#, ({'context':context})
             candidates = Candidate.objects.all()
             position = Positions.objects.all().order_by('priority')
@@ -196,6 +201,8 @@ def clear_votes(request):
                                                                 # this statement will add a vote the instance linking to that particular name...
                 instance.save()
                             # this will finally save the vote to the database for the respected field..
+                global voted
+                voted = 0
             else:
                 continue
         #candidates = Candidate.objects.all()
@@ -234,7 +241,9 @@ def mock_panel(request):
 
 def total_students_voted(request):
     if request.user.is_authenticated:
-        return render(request, 'total_students_voted.html')
+        global voted
+        context = { 'data':voted }
+        return render(request, 'total_students_voted.html', {'total':context})
     else:
         return redirect('login')
 
@@ -272,3 +281,11 @@ def mock_clear(request):
         messages.success(request, " All votes are cleared from the Mock Poll Database..")
         return render(request, 'preciding_officer.html')
       
+######################################################  Ajax listener   #######################################################
+# def my_ajax_check(request):
+#     if request.user.is_authenticated:
+#         instance_ajax = extra_field.objects.get(users=request.user)
+#         if instance_ajax.status == True:
+#             return HttpResponse(status=403)
+#         else:
+#             return HttpResponse(status=200)    

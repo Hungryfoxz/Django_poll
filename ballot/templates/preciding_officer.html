@@ -40,6 +40,7 @@
 </style>
 <!-- ############################################### PUSHER JS  ###################################################################-->
 <!-- Pusher Integration is done here ... -->
+
 <script>
 
     // Enable pusher logging - don't include this in production
@@ -63,10 +64,15 @@
 </script>
 
 <!--  ############################################  PUSHER JS ENDING  ######################################################-->
+
+
+
+
 </head>
 
 <body>
 
+<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    Integrate the Ajax request here   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  -->
 
 
 <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Preciding panel starts here  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
@@ -174,7 +180,7 @@
     <div class="preciding-inside-glass">
 
     <div class="preciding-header">
-        <h1>Actions of the Preciding Officer</h1>
+        <h1>Actions of the Presiding Officer</h1>
     </div>
 
     <div class="preciding-form-button-main">
@@ -303,7 +309,9 @@
 <!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
 <!-- _______________________________________________Java script goes here .._______________________________________________________ -->
 <script>
+
     // The analog clock goes here.......
+
     function currentTime() {
     var date = new Date(); /* creating object of Date class */
     var hour = date.getHours();
@@ -342,6 +350,7 @@
         document.getElementById("vote_btn").innerHTML = "Waiting";
         document.getElementById("p-id").innerHTML = "Waiting for the voter to Submit his/her Vote .";
         document.getElementById("spinner").style.display = "inline-block";
+        interval;
     }
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
     //clear button for the superuser ....placed here ....
@@ -371,6 +380,57 @@
             }
         }
     }
+
+
+
+    //Ajax
+
+    // interval = setInterval(function(){
+    //     //Code to AJax check goes here ......
+    //     const xhrAjax = new XMLHttpRequest();
+    //     xhrAjax.open('GET',"/my_ajax_check");
+    //     xhrAjax.onload = function(){
+    //         if(this.status === 200){
+    //             console.log("200");
+    //             //if(window.performance.navigation.type == 0){
+    //             document.getElementById("ms").innerHTML = " ";
+    //             alert("Success, The voter has submitted his vote !");                
+    //             document.getElementById("vote_btn").disabled = false;
+    //             document.getElementById("vote_btn").innerHTML = "New Vote";
+    //             document.getElementById("ms").innerHTML = "One user Voted Successfully !"; 
+    //             document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+    //             document.getElementById("spinner").style.display = "none";
+    //             clearInterval(interval);
+    //             //}
+    //         }
+    //         else{
+    //             console.log("403")
+    //         }
+    //     }
+    //     xhrAjax.send()
+    // },2000);
+
+
+     /////////////////////////////////////////////////%%%%%%%%%%%%%%%%////////////////////////////////////////////////////////
+    // let intervalid 
+    // async function testFunction() {
+    //     intervalid = setInterval(() => {
+    //         // I use axios like: axios.get('/user?ID=12345').then
+    //         new Promise(function(resolve, reject){
+    //                 resolve('something')
+    //             }).then(res => {
+    //                         if (condition) {
+    //                             // do something 
+    //                         } else {
+    //                             clearInterval(intervalid)
+    //                          }    
+    //             })  
+    //     }, 2000)  
+    // }
+    // // you can use this function like
+    // testFunction()
+
+
 </script>
 <!-- __________________________________________________  END  ____________________________________________________________-->
 {% endblock content %}

@@ -121,6 +121,11 @@
         width: 8rem;
         border-radius: .5rem;
     }
+    .mock-back-button{
+      position: absolute;
+      top: 2%;
+      right: 2%;
+    }
   </style>
   <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!--   ============================================    End of styles    =========================================================-->
@@ -132,7 +137,7 @@
     <div class="cand">
         <!--##########################################################################################################################-->
            <div class="cand-header">
-               <h1>Mock Voting </h1>
+               <h1 style="color: white; font-size: 3rem;">Mock Voting </h1>
            </div>
            <div class="cand-body">
              <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  FOrm section for the VOte submission  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -178,6 +183,9 @@
        </div>
        
   </main>
+  <div class="mock-back-button">
+    <a href="/preciding_officer"><button class="btn">Back</button></a>
+  </div>
 
 <!-- ################################################  End of the mock_panel.html #####################################################  -->
 {% endblock content %}
