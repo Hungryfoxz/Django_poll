@@ -1,5 +1,5 @@
 <h4 align="center">
-  <img alt="common readme" src="master/Django_poll/ballot/ballot/static/django.png">
+  <img alt="common readme" src="/ballot/ballot/static/django.png">
 </h4>
 
 # Django_poll
