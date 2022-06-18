@@ -1,6 +1,3 @@
-<h4 align="center" color="green">
-  <img alt="common readme" src="Django_poll/ballot/static/django.png">
-</h4>
 
 # Django_poll
 
