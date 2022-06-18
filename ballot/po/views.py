@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404, HttpResponse
 from django.shortcuts import HttpResponseRedirect, redirect, render, reverse
-from .models import Candidate, Mock, Mock_Positions, Positions, extra_field
+from .models import Candidate, Mock, Mock_Positions, Positions, extra_field,Voted
 
 
 
@@ -24,6 +24,7 @@ pusher_client = pusher.Pusher(
  
 #Create a global variable to chechk the no. of students voted...
 voted = 0 
+print(voted)
 #############################################  Index.html  ######################################################################
 
 def index(request):
@@ -77,16 +78,16 @@ def officer(request):
 
 #########################################  Voters Show Ballot  ##############################################################
 
-def voter_show_ballot(request):
-    if not request.user.is_authenticated:
-        return redirect('login_view')
-    else:
-        instance_var = extra_field.objects.get(users=request.user)
-        if instance_var.status == True:
-            return redirect('voter')
-        else:
-            messages.warning(request, '***Waiting for the Preciding officer to allow the access..Please ask the Officer to provide access...')
-            return render(request,'voter_show_ballot.html')
+# def voter_show_ballot(request):
+#     if not request.user.is_authenticated:
+#         return redirect('login_view')
+#     else:
+#         instance_var = extra_field.objects.get(users=request.user)
+#         if instance_var.status == True:
+#             return redirect('voter')
+#         else:
+#             messages.warning(request, '***Waiting for the Preciding officer to allow the access..Please ask the Officer to provide access...')
+#             return render(request,'voter_show_ballot.html')
 
 
 ############################################  Voter vote panel  ##################################################################
@@ -94,11 +95,12 @@ def voter_show_ballot(request):
 def voter(request):
     if not request.user.is_authenticated:
         return redirect('login_view')
+
     else:
         # Checking the permission from the preciding officer..
-        instance_var = extra_field.objects.get(users=request.user)
-        if instance_var.status == True:
-            if request.method == 'POST':
+        if request.method == 'POST':
+            instance_var = extra_field.objects.get(users=request.user)
+            if instance_var.status == True:
                 for position in Positions.objects.only('name'):
                                                                 # it will check for the position in the Positions table..
                         choices = request.POST.get(str(position))
@@ -115,7 +117,7 @@ def voter(request):
                 #CheckPoint here to check if the preciding officer has allowed..
                 instance_var.status = False
                 instance_var.save() 
-                messages.success(request, 'Congratulation! Your vote has been recorded..')
+                messages.success(request, 'Congratulations ! Your vote has been recorded..')
                 #context = { 'data':'disabled'}
 
                 #########################################################################
@@ -126,15 +128,31 @@ def voter(request):
                 pusher_client.trigger([str(request.user.id)], 'my-event', {'message': 'The Voter has Voted Successfully.'})
                 #########################################################################
                 # COunter to increase the no of students voted...
-                global voted
-                voted +=1 
-                return render(request, 'voter_show_ballot.html')#, ({'context':context})
+                # global voted
+                # voted +=1 
+                # print(voted)
+                if(Voted.objects.filter(pk=1).exists()):
+                    inst_tot_vot = Voted.objects.get(pk=1)
+                    inst_tot_vot.voted += 1
+                    inst_tot_vot.save()
+                    print(inst_tot_vot.voted)
+                return redirect('voter')#, ({'context':context})
+            else:
+                candidates = Candidate.objects.all()
+                position = Positions.objects.all().order_by('priority')
+                messages.warning(request, 'Request the Presiding officer to allow the Vote !')
+                return render(request, 'voter.html',{'candidates': candidates,'positions':position})
+        #If the condition is false..ie the po has not allowed the user to vote still now..
+        else:
+            # messages.warning(request, 'Waiting for the Presiding officer to allow the Vote !')
+            # return redirect('voter.html')
+
             candidates = Candidate.objects.all()
             position = Positions.objects.all().order_by('priority')
             return render(request, 'voter.html',{'candidates': candidates,'positions':position})
-        # Checking the returned form from the user..
-        else:
-            return redirect('voter_show_ballot')
+                # Checking the returned form from the user..
+                # else:
+                #     return redirect('voter_show_ballot')
 
 ############################################# test Pass to allow vote vs new_vote  ##############################################
 
@@ -201,8 +219,10 @@ def clear_votes(request):
                                                                 # this statement will add a vote the instance linking to that particular name...
                 instance.save()
                             # this will finally save the vote to the database for the respected field..
-                global voted
-                voted = 0
+                if Voted.objects.filter(pk=1).exists():
+                    inst_tot_vot = Voted.objects.get(pk=1)
+                    inst_tot_vot.voted = 0
+                    inst_tot_vot.save()
             else:
                 continue
         #candidates = Candidate.objects.all()
@@ -241,8 +261,10 @@ def mock_panel(request):
 
 def total_students_voted(request):
     if request.user.is_authenticated:
-        global voted
-        context = { 'data':voted }
+        #global voted
+        #print(voted)
+        int_tot_vot = Voted.objects.get(pk=1)
+        context = { 'data': int_tot_vot.voted }
         return render(request, 'total_students_voted.html', {'total':context})
     else:
         return redirect('login')

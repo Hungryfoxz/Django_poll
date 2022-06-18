@@ -49,14 +49,15 @@ class Candidate(models.Model):
 
                                                                                                             # Total students Voted..
 #[+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
-# class Voted(models.Model):
-#     Total_Students_Voted = models.IntegerField(default=0)
+class Voted(models.Model):
+    Donot_edit_this_field = models.CharField(max_length=50)
+    voted = models.IntegerField(default=0)
 
-#     def __str__(self):
-#         return self.Total_Students_Voted 
+    def __str__(self):
+        return self.Donot_edit_this_field
 
-#     class Meta:
-#         verbose_name_plural = "Zone_Total_Students_Voted"
+    class Meta:
+        verbose_name_plural = "Zone_Total_Students_Voted"
 
 
                                                                                                             # Mock positions..

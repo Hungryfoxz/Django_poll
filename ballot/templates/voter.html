@@ -108,13 +108,81 @@
         border-radius: 2rem;
         text-align: center;
         box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
-        transition: .5s;
+        transition: do .5s;
     }
     .btnn:hover{
         background: black;
         color: white;
 
     }
+    .msg-div{
+        top: 0;
+        left: 0;
+        position: fixed;
+        background: linear-gradient(to right bottom, rgba(56, 56, 56, 0.3), rgba(88, 87, 87, 0.25));        
+        min-height: 100vh;
+        min-width: 100%;
+        backdrop-filter: blur(1rem);
+        /* z-index: 15; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* visibility: none; */
+        transition: do .1s;
+    }
+    .voter-msg{
+        position: absolute;
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.875), rgba(255, 254, 254, 1));
+        /* background: rgb(40, 39, 39); */
+        /* text: white; */
+        height: 15rem;
+        width: 30rem;
+        border-radius: 2rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
+        shape-outside: ;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        /* z-index: 20; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%,-5%);
+        backdrop-filter: blur(4px);
+        transition: do .1s;
+
+    }
+    .voter-msg li{
+      list-style: none;
+    }
+    .vote-btn{
+      height: 3rem;
+      width: 6rem;
+      border-radius: 2rem;
+      border: none;
+      background: white;
+      text:black;
+      transition: do .12s;
+      /* visibility: hidden; */
+    }
+    .vote-btn:hover{
+      height: 3.5rem;
+      width: 6.5rem;
+      text: white;
+    }
+    
+    @keyframes do {
+        0%{
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100%{
+          opacity: 0;
+        }
+      }
   </style>
   <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!--   ============================================    End of styles    =========================================================-->
@@ -173,5 +241,58 @@
  <!--##########################################################################################################################-->
 </div>
 </main>
-<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THE END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  -->
+
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+<!-- __________________________________________  Success message shown here!!!  ____________________________________________   -->
+<!--[++]  _____________________________________   This will be an alert.  _________________________________________________  [++]-->
+{% if messages %}
+<div class="msg-div" id="hide_me">
+  <div class="voter-msg">
+    <ul>
+      {% for message in messages %}
+      <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+        
+        <h3><b>{{message}}</b></h3>
+
+        {% endfor %}
+      </ul>
+      
+    </div>  
+    <button class="vote-btn" onclick="love_hiding_you()" type="button">OK</button>
+  </div>
+  {% endif %}
+  <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THE END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  -->
+<script>
+  function love_hiding_you(){
+    // console.log("yess");
+    setTimeout(()=>{
+          document.getElementById("hide_me").style.opacity = .5;},100);
+     
+    setTimeout(()=>{
+          document.getElementById("hide_me").style.opacity = .1;},100);
+    
+    setTimeout(()=>{
+          document.getElementById("hide_me").style.visibility = 'hidden';
+    },100);
+  }
+
+
+    // document.getElementById("hide_me").style.opacity = .7;
+    // document.getElementById("hide_me").style.opacity = .5;
+    // document.getElementById("hide_me").style.opacity = .2;
+    // document.getElementById("hide_me").style.opacity = 0;
+    // document.getElementById("hide_me").style.visibility = 'hidden';
+  
+
+
+  // btn = document.getElementById("vt-bt");
+  // console.log("yes")
+  // btn.addEventListener('click', function(){
+  //   console.log("yes!!")
+  //   document.getElementById('hide_me').style.div = 'none';
+  // });
+</script>
+
+
+
 {% endblock content %}
