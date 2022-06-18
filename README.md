@@ -1,4 +1,4 @@
-<h4 align="center">
+<h4 align="center" color="green">
   <img alt="common readme" src="/ballot/ballot/static/django.png">
 </h4>
 
