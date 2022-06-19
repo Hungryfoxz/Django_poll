@@ -23,8 +23,9 @@ pusher_client = pusher.Pusher(
 # Create your views here.
  
 #Create a global variable to chechk the no. of students voted...
-voted = 0 
-print(voted)
+# voted = 0 
+# print(voted)
+print(" If you are seeing this message in the terminal that this means that it is working properly ")
 #############################################  Index.html  ######################################################################
 
 def index(request):
