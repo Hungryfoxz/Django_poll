@@ -12,9 +12,9 @@ from .models import Candidate, Mock, Mock_Positions, Positions, extra_field,Vote
 # # Integrating Pusher js Here
 import pusher
 pusher_client = pusher.Pusher(
-  app_id='1422023',
-  key='2cd0f0edd98809e00ff2',
-  secret='669c6efed9bc1566af99',
+  app_id='1425713',
+  key='7abfa1c5b2f52b98dc73',
+  secret='dc23817db4dc788e065d',
   cluster='ap2',
   ssl=True
 )
