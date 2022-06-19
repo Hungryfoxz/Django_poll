@@ -3,7 +3,7 @@
 
 This is the voting project Designed for JORHAT INSTITUTE OF SCIENCE AND TECHNOLOGY.
 <div style="align:center">
- <img src="screenshots/logo.png" alt="django-image">
+ <img src="screenshots/logo.png" alt="Jist Logo">
 </div>
  
 
