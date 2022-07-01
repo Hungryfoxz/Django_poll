@@ -35,7 +35,7 @@ This is the voting project Designed for JORHAT INSTITUTE OF SCIENCE AND TECHNOLO
 ```Presiding_officer```
 
 
->The Presiding_Officer can organize Mock-Poll(see the results of mock poll,delete the mock-poll table).He has the ability to see the total no of students that have voted.Only when the Presiding officer clicks the "New_vote" button on the presinding officer panel ,then only the voter can submit his vote.The presiding officer and the voter are connected by logging in with the same username and password provided by the admin on the two respective computers, and this creates two instances of the same user which are bounded to one session.Once the preciding officer clicked 'New_vote' ,the button disables and he has to wait for the voter to submit his vote.When the Voter submits his vote ,a success message is shown on the prciding officer panel after which the 'New_vote' button becomes active again and the officer can click this button again to allow the next voter to submit his vote. 
+>The Presiding_Officer can organize Mock-Poll(see the results of mock poll,delete the mock-poll table).He has the ability to see the total no of students that have voted.When the Presiding officer clicks the "New_vote" button on the presinding officer panel ,then only the voter can submit his vote.The presiding officer and the voter are connected by logging in with the same username and password provided by the admin on the two respective computers, and this creates two instances of the same user which are bounded to one session. Once the preciding officer clicks 'New_vote' ,the button disables and he has to wait for the voter to submit his vote. When the Voter submits his vote ,a success message is shown on the prciding officer panel after which the 'New_vote' button becomes active again and the officer can click this button again to allow the next voter to submit his vote. 
 
 
 ```Voter```
@@ -48,7 +48,7 @@ ________________________________________________________________________________
  <img src="screenshots/django1.png" alt="django-image">
  </div>
 
-As you may have probably guessed by now that, it is build with Django. The project uses no CSS frameworks as it is not made to be run on mobile devices, just plane CSS. It uses Pusher JS to provide communication between the Preciding officer and the Voter. Also there are a variation of little javascript libraries here and there such as jQuery, Ajax etc. The Database is the ~Sqlite3 which comes in built with the Django Framework,since the amount of data we are dealing with is very small so no external database is implemented.  
+The application is build with Django. The project uses no CSS frameworks, just plane CSS. It uses Pusher JS to provide realtime communication between the Preciding officer and the Voter. Also there are a variation of little javascript libraries here and there such as jQuery, Ajax etc. The Database it uses is the ~Sqlite3 which comes in packed with Django, Hence we are relieved from trouble of implementing our own database .  
 
 
 _______________________________________________________________________________________________________________________________________________________________________
@@ -69,7 +69,7 @@ Make sure you have python3.1 or above installed on your machine.
 > Unzip it and move inside the Django_poll folder.
 
 
-> Again move inside the ballot folder.Once you are inside the first ballot folder ,again move into the next ballot folder.
+> Move inside the ballot folder.
 
 
 > Now open the powershell or command prompt with the current ballot folder and type the bellow command.
@@ -84,7 +84,7 @@ This will start the server on 8000
 $ http://127.0.0.1:8000
  ```
 
-And you are good to go.
+Just one command and you are good to go, no need for any extra dependencies.
 
 
 
@@ -136,11 +136,6 @@ Now you will see a directory tree something like this.
 ```javascript
 $ cd ballot
 ```
-> Now cd again into the ballot folder 
-
-```javascript
-$ cd ballot
-```
 
 Now once you are inside the ballot directory just type in the bellow command to start the development server.
 > By default it will run on http://127.0.0.1:8000
@@ -165,7 +160,7 @@ Login to the admin panel with this url :
 
 
 After you are successfully logged in , Go to the users table and add New user and select the previledges. Add new admin and password as your choice and give him the 'super-user' access and after the new 'super-user' is created remove the default superuser.
- To create new Preciding officer just follow the same procedure but don't give him the superuser access this time. You can add as many staff users as you like(just keep in mind that , you need to create only one superuser.Though you can create as many superusers as you like ,but it is advised to create only one superuser)
+ To create new Preciding officer just follow the same procedure but don't give him the superuser access this time. You can add as many staff users as you like(just keep in mind that , you need to create only one superuser).
 
 
 
@@ -267,10 +262,6 @@ After you are successfully logged in , Go to the users table and add New user an
 >```Positions List``` --- Add new positions according to the need of the elections.
 
 >```Table Mock Poll``` --- Add Candidate in the mock table.
-
->```Table Mock Positions``` --- Add positions in the mock table.
-
->```Zone``` --- (Important) Donot edit/delete these fields . These rows are for the internal functions of the program.
 
 
 <div style="align:center">
