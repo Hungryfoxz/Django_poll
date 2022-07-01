@@ -1,3 +1,16 @@
+<div inline="block">
+<img src="https://img.shields.io/github/issues/Hungryfoxz/Django_poll"/>
+  <img src="https://img.shields.io/github/forks/Hungryfoxz/Django_poll"/>
+  <img src="https://img.shields.io/github/stars/Hungryfoxz/Django_poll"/>
+  <img src="https://img.shields.io/github/license/Hungryfoxz/Django_poll"/>
+  <img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FHungryfoxz%2FDjango_poll"/>
+  <img src="https://img.shields.io/badge/branch-main-brightgreen"/>
+  <img src="https://img.shields.io/badge/backend-python-yellow"/>
+  <img src="https://img.shields.io/badge/status-active-ff69b4"/>
+  <img src="https://img.shields.io/badge/Database-SqlLite3-green"/>
+  <img src="https://img.shields.io/badge/Jquery-Yes-blueviolet"/>
+  <img src="https://img.shields.io/badge/Ajax-Yes-red"/>
+</div>
 
 # Django_poll
 
