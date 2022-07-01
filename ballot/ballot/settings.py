@@ -34,13 +34,13 @@ CSRF_TRUSTED_ORIGINS = ['https://857b-2401-4900-3de0-2b7e-1c00-4a93-177d-b8c8.in
 # Application definition
 
 INSTALLED_APPS = [
-    'po.apps.PoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'po.apps.PoConfig',
 ]
 
 MIDDLEWARE = [

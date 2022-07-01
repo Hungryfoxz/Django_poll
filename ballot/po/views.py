@@ -1,4 +1,5 @@
 from multiprocessing import context
+import re
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
@@ -50,9 +51,14 @@ def login_view(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user)
-            # Redirect to a success page.
-            return render(request, 'povo_home.html')
+            if user.is_superuser:
+                login(request, user)
+                return render(request, 'preciding_officer.html')
+                
+            else:
+                login(request, user)
+                # Redirect to a success page.
+                return render(request, 'povo_home.html')
         else:
             messages.warning(request,"Wrong Username or Password !")
             # Error returns to the login page again..

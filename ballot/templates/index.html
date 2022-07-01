@@ -11,7 +11,7 @@
         <img src="{% static 'jist.jpg' %}" alt="Jist-logo">
         <h1>JISTSU</h1>
         <div>
-          <a href="/login" style="vertical-align:middle"><button class="btn">Login</button></a>
+          <a href={% url 'login_view' %} style="vertical-align:middle"><button class="btn">Login</button></a>
         </div>
       </div>
 
