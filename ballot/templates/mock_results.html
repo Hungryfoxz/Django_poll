@@ -40,6 +40,29 @@
         color: black;
 
     }
+    .mock-back-button{
+      position: absolute;
+      top: 2%;
+      right: 2%;
+    }
+    .messages-mock-res{
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+        padding-top: .65rem;
+        padding-bottom: .55rem;
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+        border-radius: 1.2rem;
+        display: flex;
+        justify-content: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        max-width: 15rem;
+    }
+    .messages-mock-res li{
+      list-style: none;
+    }
 </style>
 </head>
 
@@ -48,7 +71,7 @@
 <main>
     <div class="table-section">
         <div class="header-result">
-            <h1 class="mock-res-he">Mock-Results</h1>
+            <h1 class="mock-res-he">Mock-Poll Results</h1>
         </div>
         <div id="print-content">
           <table id="table">
@@ -92,7 +115,7 @@
 
 <!-- ########################################################  Extra Buttons  ##################################################### -->
 
-<div class="mock_xtra_btn">
+{% comment %} <div class="mock_xtra_btn">
     <div class="mock-clr">
         <!-- <p>Clear all the votes.</p> -->
         <a href="{% url 'mock_clear' %}"><button  class="btnn">CLear Results</button></a>
@@ -101,8 +124,30 @@
         <!-- <p>Preciding Officer panel.</p> -->
         <a href="{% url 'officer' %}"><button class="btnn">Go Back Home</button></a>
     </div>
+</div> {% endcomment %}
+
+
+
+<div class="mock-back-button">
+    <a href="{% url 'mock_panel' %}"><button class="btn">Back</button></a>
 </div>
 
+
+<!-- Messages area  -->
+
+{% if messages %}
+    <!-- <div class="messages-mock" id="hide_the_div"> -->
+      <div class="messages-mock-res" >
+            <ul>
+                {% for message in messages %}
+                <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+                    
+                    <h5><b>{{message}}</b></h5>
+                    
+                {% endfor %}
+            </ul>
+        </div>     
+    {% endif %}
 
 <!-- {% comment %} #####################################  JavaSscript goes here ############################## {% endcomment %} -->
 <script>

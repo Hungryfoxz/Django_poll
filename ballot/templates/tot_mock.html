@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .my_glass_container_stu{
+        background: white;
+        min-height: 80vh;
+        width: 60%;
+        background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+        border-radius: 2rem;
+        z-index: 10;
+        backdrop-filter: blur(1rem);   
+        display: flex;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        justify-content: center;
+        align-items: center;
+    }
+    .stu-count{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+    .students{
+        top: 50%;
+        bottom: 50%;
+        font-size:8rem;
+        color: #183050;
+    }
+    .students-2{
+        font-size: 2rem;
+        color: #315789;
+    }
+    .voted-back-butn{
+        position: absolute;
+        top: 2%;
+        right: 2%;
+    }
+</style>
+</head>
+
+<body>
+<!--   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  total_students_voted.html body starts here    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+    <main>
+        <section class="my_glass_container_stu">
+            <div class="stu-count">
+                    <h3>Total Voters voted till Now.</h3>
+                    <p class="students"><span class="students-2">All Total </span>{{ total.data }}<span class="students-2"> Students</span></p>
+                
+            </div>
+        </section>
+    </main>
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  END of the MAIN sections @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!--   _______________________________________________  Background circles here _____________________________________________________  -->
+<div class="circle1"></div>
+<div class="circle2"></div>
+<div class="circle3"></div>
+<div class="voted-back-butn">
+    <a href="/mock_panel"><button class="btn">Back</button></a>
+</div>
+  <!-- ################################################  End of the index.html #####################################################  -->
+{% endblock content %}

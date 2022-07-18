@@ -1,3 +1,4 @@
+from email.policy import default
 from pickle import FALSE
 from tabnanny import verbose
 from django.db import models
@@ -25,7 +26,7 @@ class Positions(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Position List"
+        verbose_name_plural = "Portfolios"
 
                                                                                                             # CANDIDATE
 #[+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
@@ -33,6 +34,7 @@ class Positions(models.Model):
 class Candidate(models.Model):
     name = models.CharField(max_length=80)
     position = models.ForeignKey(Positions, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to ='static/', height_field=None, width_field=None)
     #upload = models.ImageField(upload_to ='uploads/', height_field=None, width_field=None)
     votes = models.IntegerField(default=0)
 
@@ -86,3 +88,14 @@ class Mock(models.Model):
 
     class Meta:
         verbose_name_plural = "Table Mock Poll"
+
+                                                                                                        # PO votes showing button..
+#[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]
+class po_vote_showing(models.Model):
+    users = models.OneToOneField(User, on_delete=models.CASCADE)
+    #validation = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
+    final_status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Po_stauts_results"

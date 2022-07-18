@@ -5,103 +5,50 @@
 <!--  ===================================  Styles unique to this page goes here  ===========================================    -->
 <style>
 
-    [type="radio"] {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
+    .preciding-messages-mock{
       position: absolute;
-      width: 1px;
-    }
-
-    /* One radio button per line */
-    label {
-      display: block;
-      cursor: pointer;
-      line-height: 2.5em;
-      font-size: 1rem;
-    }
-
-    [type="radio"] + span {
-      display: block;
-    }
-
-    [type="radio"] + span:before {
-      content: "";
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      vertical-align: -0.25em;
-      border-radius: 1em;
-      border: 0.125em solid #fff;
-      box-shadow: 0 0 0 0.15em #000;
-      margin-right: 0.75em;
-      transition: 0.5s ease all;
-    }
-
-    [type="radio"]:checked + span:before {
-      background: rgb(1, 1, 1);
-      box-shadow: 0 0 0 0.25em rgb(0, 0, 0);
-    }
-
-    fieldset {
-      font-size: 1em;
-      border: 2px solid rgb(255, 255, 255);
-      padding: 1rem;
-      border-radius: 0.5em;
+      top: 2%;
+      left: 1%;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+      padding-top: .65rem;
+      padding-bottom: .55rem;
+      padding-left: 1.1rem;
+      padding-right: 1.1rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: center;
       box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
-      transition: all 1s ease;
-    }
-    fieldset:hover{
-        transform: scale(1.025);
-     }
 
-    legend {
-      color: linear-gradient(to right top, #4dd8bf, #4fd3e7);
-      background: rgb(255, 254, 254);
-      font-size: 1.44rem;
-      padding: 0.25em 1em;
-      border-radius: 1em;
+      }
+    .preciding-messages-mock li{
+      list-style: none;
+      color: #0a1a30;
+      /*  box-shadow:0 0 80px rgb(95, 95, 95),0 0 80px rgb(239, 241, 239),0 0 80px   */
     }
-
-    .p {
-      text-align: center;
-      font-size: 1rem;
-      padding-top: 120px;
+    .mock-back-button{
+      position: absolute;
+      top: 2%;
+      right: 2%;
     }
-    .cand-body,.cand,.cand-btn{
+    .mock_xtra_btn{
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+        /* background: linear-gradient(to right bottom, rgba(255,255,255,1), rgba(255,255,255,0.6)); */
+        border-radius: 2rem;
+        z-index: 5;
+        backdrop-filter: blur(1rem);
+        /* box-shadow: 6px 6px 20px rgba(122,122,122,0.4); */
+        height: 15%;
+        width: 15%;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         flex-direction: column;
         align-items: center;
-    }
-    .cand-btn p{
-        padding-top: 2rem;
-        padding-bottom: 1.5rem;
-    }
-    .cand-btn{
-        padding-bottom: 3rem;
-    }
-    .cand-header{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 2rem;
-        padding-top: 1.5rem;
-    }
-    fieldset{
-        width: 48vw; 
-        display: flex; 
-        justify-content: space-around;
-        margin-bottom: 1.45rem;
-        background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.7));
     }
     .btnn{
-        background: white;
-        color: black;
+        background: black;
+        color: white;
         font-size: 1rem;
         padding: .8rem 1.8rem;
         border: none;
@@ -112,80 +59,345 @@
         transition: .5s;
     }
     .btnn:hover{
-        background: black;
-        color: white;
+        background: white;
+        color: black;
 
     }
-    .imgu{
-        height: 12rem;
-        width: 8rem;
-        border-radius: .5rem;
+    .messages-mock{
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 254, 254, 0.9));
+        padding-top: .65rem;
+        padding-bottom: .55rem;
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+        border-radius: 1.2rem;
+        display: flex;
+        justify-content: center;
+        box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
+        max-width: 15rem;
     }
-    .mock-back-button{
+    .messages-mock li{
+      list-style: none;
+    }
+    .mock_xtra_btn_tot{
       position: absolute;
-      top: 2%;
-      right: 2%;
+        bottom: 1%;
+        left: 1%;
+        /* background: linear-gradient(to right bottom, rgba(255,255,255,1), rgba(255,255,255,0.6)); */
+        border-radius: 2rem;
+        z-index: 5;
+        backdrop-filter: blur(1rem);
+        /* box-shadow: 6px 6px 20px rgba(122,122,122,0.4); */
+        height: 15%;
+        width: 15%;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
     }
   </style>
   <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!--   ============================================    End of styles    =========================================================-->
+ 
+ 
+  <!-- ############################################### PUSHER JS  ###################################################################-->
+  <!-- Pusher Integration is done here ... -->
+
+        <!-- <script>
+
+          // Enable pusher logging - don't include this in production
+          Pusher.logToConsole = true;
+
+          var pusher = new Pusher('7abfa1c5b2f52b98dc73', {
+          cluster: 'ap2'
+          });
+
+          var channel = pusher.subscribe('{{user.id}}');
+          channel.bind('my-event', function(data) {
+            //alert(JSON.stringify(data));
+            document.getElementById("ms").innerHTML = " ";
+            alert(data.message)
+            document.getElementById("vote_btn").disabled = false;
+            document.getElementById("vote_btn").innerHTML = "New Vote";
+            document.getElementById("ms").innerHTML = "One user Voted Successfully !"; 
+            document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+            document.getElementById("spinner").style.display = "none";
+          });
+        </script> -->
+
+<!-- ###################################################################################################################### -->
+<!--  Long Polling   -->
+<script> 
+
+//   async function subscribe() {
+//   let response = await fetch("/my_ajax_check");
+//   console.log("running3")
+//   if (response.status == 502) {
+//     // Status 502 is a connection timeout error,
+//     // may happen when the connection was pending for too long,
+//     // and the remote server or a proxy closed it
+//     // let's reconnect
+//     await subscribe();
+//   } else if (response.status != 200) {
+//     // An error - let's show it
+//     console.log(response.statusText);
+//     // Reconnect in one second
+//     await new Promise(resolve => setTimeout(resolve, 3000));
+//     await subscribe();
+//   } else {
+//     // Get and show the message
+//     let message = await response.text();
+//     console.log(message);
+//     document.getElementById("ms").innerHTML = " ";
+//     //alert("The voter has submitted his Vote")
+//     document.getElementById("vote_btn").disabled = false;
+//     document.getElementById("vote_btn").innerHTML = "New Vote";
+//     document.getElementById("ms").innerHTML = "Voter has Voted Successfully !"; 
+//     document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+//     document.getElementById("spinner").style.display = "none";
+//     // Call subscribe() again to get the next message
+//     await subscribe();
+//   }
+// }
+
+// subscribe();
+
+
+// var logic = setInterval(Time, 3000);  
+
+//  async function Time() {  
+//   let response = await fetch("/my_ajax_check"); 
+//   if (response.status == 200) {
+//     console.log("hi")
+//     let message = await response.text();
+//     console.log(message);
+//     document.getElementById("ms").innerHTML = " ";
+//     //alert("The voter has submitted his Vote")
+//     document.getElementById("vote_btn").disabled = false;
+//     document.getElementById("vote_btn").innerHTML = "New Vote";
+//     document.getElementById("ms").innerHTML = "Voter has Voted Successfully !"; 
+//     document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+//     document.getElementById("spinner").style.display = "none";
+//     FunctionStop()
+//   }  
+// }
+//   function FunctionStop() {  
+//   clearInterval(logic);  
+// }  
+
+</script>
+<!--  ############################################  PUSHER JS ENDING  ######################################################-->
 </head>
 
 <body>
 <!--   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    mock_panel.html body starts here    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
   <main>
-    <div class="cand">
-        <!--##########################################################################################################################-->
-           <div class="cand-header">
-               <h1 style="color: white; font-size: 3rem;">Mock Voting </h1>
-           </div>
-           <div class="cand-body">
-             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  FOrm section for the VOte submission  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-           <form action=" " method="POST">
-               <!--CSRF validation-->
-               {% csrf_token %}
-               
-               <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   python code for fetching the candidates $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
-               {% for pos in position %}
-               <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
-               <fieldset>
-       
-                   <!-- If the position is present in the Positon_Table -->
-                   <!-- Printing the position here-->
-                   <legend>{{pos}}</legend>
-                   <!-- ==============================================================================================  -->
-                   {% for candidate in candidates  %}
-                   <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                       {% if candidate.position == pos %}
-                       <!-- ====================================================================== -->
-                       <label for="{{candidate.name}}">
-                           <input type="radio" value="{{candidate.id}}" name="{{pos}}" id="{{candidate.name}}" />
-                           <span>{{candidate.name}}</span>
-                           <img class="imgu" src="/{{ candidate.image}}" alt="candidate_image.jpg">
-                       </label>
-                       <!-- =====================================================================  -->
-                       {% endif %}
-                       <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                   {% endfor %}
-                   <!-- ==============================================================================================  -->
-               </fieldset>
-               {% endfor %}
-               <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
-               <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Submision button here @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   -->
-               <div class="cand-btn">
-                   <p>Final Submit here. Click below </p>
-                   <button class="btnn">Vote</button> 
-               </div>
-           </form>
-           </div>
-           <!--end of form-->
-        <!--##########################################################################################################################-->
-       </div>
-       
-  </main>
-  <div class="mock-back-button">
-    <a href="{% url 'officer' %}"><button class="btn">Back</button></a>
+    <!-- _______________________________________      Preciding Officer only   ______________________________________________________-->
+
+<div class="my_glass_container">
+
+  <div class="preciding-inside-glass">
+
+  <div class="preciding-header">
+      <h1>Mock Voting Panel</h1>
   </div>
 
+  <div class="preciding-form-button-main">
+      <!--<form action=" " method="post">
+          {% csrf_token%}-->
+      <div>
+          <p id="p-id">Click below to allow the user to submit his vote.</p>
+          <div class="preciding-form-button-main-inside">            
+              <!--<a href="/admitted_from_po">--><button onclick="new_vote()" class="btn bt" id="vote_btn">New Vote</button></a>
+          </div>
+      </div>
+      <!--</form>-->
+  </div>
+
+
+  <!--          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            -->
+  <!--_____________________The bottom to buttons to show the results and the close voting button .________________________. -->
+  <div class="preciding-bottom-buttons">
+      <div class="preciding-tables-button">
+          <p>Results of the Mock-Poll.</p>
+          <div class="preciding-form-button-main-inside">
+          <a href="/mock_results"><button class="btn">Results</button></a>
+          </div>
+      </div>
+      <div class="preciding-logout-button">
+      <p>Go back to Home.</p>
+          <div class="preciding-form-button-main-inside">
+          <a href="{% url 'officer' %}"><button class="btn">Go Back</button></a>
+          </div>
+      </div>
+  </div>
+</div>
+</div> 
+
+
+
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->  
+<!--  ___________________________________________________Messages____________________________________________________________  -->
+
+      <div class="preciding-messages">
+          <ul>
+              <li>
+                  <h5 id="ms">Welcome! {{ user }}</h5>
+                  <h5 id="clock"></h5>
+                  
+              </li>
+              <div  id="spinner" class="spinner">
+                  <div class="sp-3balls"></div>
+              </div>
+          </ul>
+      </div>
+
+
+
+<!--   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!-- _________________________________________Rotating circles background animation .._________________________________________ -->
+  <div class="clocks">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+  </div>
+
+       
+  </main>
+
+  <div class="mock_xtra_btn">
+      <div class="mock-clr">
+          <!-- <p>Clear all the votes.</p> -->
+          <button onclick="clear_me()" class="btnn" id="clr">Clear Votes</button>
+          <!-- <a href="{% url 'mock_clear' %}"><button  class="btnn">CLear Results</button></a> -->
+      </div>
+  </div>
+
+  <div class="mock_xtra_btn_tot">
+    <div class="mock-tot">
+        <!-- <p>Clear all the votes.</p> -->
+        <a href="/tot_mock"><button class="btn">Total Votes</button></a>
+        <!-- <a href="{% url 'mock_clear' %}"><button  class="btnn">CLear Results</button></a> -->
+    </div>
+</div>
+
+  <!-- <div class="mock-back-button">
+    <a href="{% url 'officer' %}"><button class="btn">Back</button></a>
+  </div> -->
+
+<!-- Messages to be included  -->
+{% if messages %}
+    <!-- <div class="messages-mock" id="hide_the_div"> -->
+      <div class="messages-mock" id="hide_the_div" >
+            <ul>
+                {% for message in messages %}
+                <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+                    
+                    <h5><b>{{message}}</b></h5>
+                    
+                {% endfor %}
+            </ul>
+        </div>     
+    {% endif %}
+
+
+  <script>
+
+
+    function new_vote(){
+        //console.log("Hi");
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET',"/admitted_from_po");
+        xhr.send();
+        //console.log(1);
+        document.getElementById("ms").innerHTML = " The Voter can vote Now !";
+        //console.log(2);
+        setTimeout(function(){
+                document.getElementById("ms").innerHTML = " Waiting for the Voter to vote Now !";
+            }, 6000);
+        document.getElementById("vote_btn").disabled = true;
+        document.getElementById("vote_btn").innerHTML = "Waiting";
+        document.getElementById("p-id").innerHTML = "Waiting for the voter to Submit his/her Vote .";
+        // subscribe()
+        document.getElementById("spinner").style.display = "inline-block";
+        logic = setInterval(Time, 3000);
+        // interval;
+    }
+
+    var logic = setInterval(Time, 3000);  
+
+      async function Time() {  
+        let response = await fetch("/my_ajax_check"); 
+        if (response.status == 200) {
+          console.log("hi")
+          let message = await response.text();
+          console.log(message);
+          document.getElementById("ms").innerHTML = " ";
+          //alert("The voter has submitted his Vote")
+          document.getElementById("vote_btn").disabled = false;
+          document.getElementById("vote_btn").innerHTML = "New Vote";
+          document.getElementById("ms").innerHTML = "User : {{ user }}"; 
+          document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
+          document.getElementById("spinner").style.display = "none";
+          FunctionStop()
+        }  
+      }
+        function FunctionStop() {  
+        clearInterval(logic);  
+      }  
+
+
+      async function clear_me(){
+      let message = "You are about to clear all the votes from the Candidates . Are you sure you want to perform this action ."
+      var reply = confirm(message);
+      if(reply){
+          var again_reply = confirm("Once you do this you will not be able to see the results again, Please print the results before Clearing the votes!");
+          if(again_reply){
+              var name = prompt("What is your username?");
+              if(name == '{{user}}'){
+                  const confirmation = prompt("Write 'CONFIRM' to confirm.");
+                  const str_compare = "CONFIRM"
+                  if(confirmation === str_compare){
+                      //console.log(111)
+                      let xhttp = new XMLHttpRequest();
+                      xhttp.open('GET',"/mock_clear");
+                      xhttp.send();
+                      // xhttp.onload = function(){
+                      //   if(xhttp.status===202){
+                      //     alert("You have already Cleared the Mock votes once.");
+                      //   }
+                      //   elseif(xhttp.status===200){
+                          alert("Success! All the votes are cleared from the Mock database.");
+
+                        // }
+                      // }
+                        // window.location.href("/mock_results"      
+                  }else{
+                      alert("Please try again and write the word 'CONFIRM' to confirm your choice.")
+                  }
+              }else{
+                  alert("Wrong username!")
+              }
+              //alert("Success! All the votes are cleared from the database.")
+          }
+      }
+    }
+  </script>
 <!-- ################################################  End of the mock_panel.html #####################################################  -->
 {% endblock content %}

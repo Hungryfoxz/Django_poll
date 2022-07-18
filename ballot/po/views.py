@@ -6,20 +6,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404, HttpResponse
 from django.shortcuts import HttpResponseRedirect, redirect, render, reverse
-from .models import Candidate, Mock, Mock_Positions, Positions, extra_field,Voted
+from .models import Candidate, Mock, Mock_Positions, Positions, extra_field,Voted, po_vote_showing
 
 
 
 # # Integrating Pusher js Here
-import pusher
-pusher_client = pusher.Pusher(
-  app_id='1425713',
-  key='7abfa1c5b2f52b98dc73',
-  secret='dc23817db4dc788e065d',
-  cluster='ap2',
-  ssl=True
-)
-
+# '''import pusher
+# pusher_client = pusher.Pusher(
+#   app_id='1425713',
+#   key='7abfa1c5b2f52b98dc73',
+#   secret='dc23817db4dc788e065d',
+#   cluster='ap2',
+#   ssl=True
+# )
+# '''
 
 # Create your views here.
  
@@ -37,7 +37,10 @@ def index(request):
             instance = extra_field()
             instance.users = i
             instance.save()
-            #print(i)
+            new_instance = po_vote_showing()
+            new_instance.users = i
+            new_instance.save()
+            print(i)
         else:
             continue
     return render(request, 'index.html')
@@ -132,9 +135,9 @@ def voter(request):
                 #name = request.user
                 #channel_name = u"{}".format(request.user)
                 #print(channel_name)
-                pusher_client.trigger([str(request.user.id)], 'my-event', {'message': 'The Voter has Voted Successfully.'})
+                # pusher_client.trigger([str(request.user.id)], 'my-event', {'message': 'The Voter has Voted Successfully.'})
                 #########################################################################
-                # COunter to increase the no of students voted...
+                # Counter to increase the no of students voted...
                 # global voted
                 # voted +=1 
                 # print(voted)
@@ -142,12 +145,12 @@ def voter(request):
                     inst_tot_vot = Voted.objects.get(pk=1)
                     inst_tot_vot.voted += 1
                     inst_tot_vot.save()
-                    print(inst_tot_vot.voted)
+                    # print(inst_tot_vot.voted)
                 return redirect('voter')#, ({'context':context})
             else:
                 candidates = Candidate.objects.all()
                 position = Positions.objects.all().order_by('priority')
-                messages.warning(request, 'Request the Presiding officer to allow the Vote !')
+                messages.warning(request, 'Request the Presiding officer to allow the Voting !')
                 return render(request, 'voter.html',{'candidates': candidates,'positions':position})
         #If the condition is false..ie the po has not allowed the user to vote still now..
         else:
@@ -179,6 +182,7 @@ def voter(request):
     else:
         messages.warning(request, "Your are not authorized to view this page or your session may have ended..Login again!")
         return HttpResponseRedirect(reverse('officer'))'''
+
 def admitted_from_po(request):
     if request.user.is_authenticated:
         #currently_accessing = request.user
@@ -198,9 +202,10 @@ def admitted_from_po(request):
 
 def tables(request):
     if request.user.is_authenticated:
-        candidates = Candidate.objects.all()
-        position = Positions.objects.all().order_by('priority')
-        return render(request, 'results.html',{'candidates': candidates,'positions':position})
+        if request.user.is_superuser:
+            candidates = Candidate.objects.all()
+            position = Positions.objects.all().order_by('priority')
+            return render(request, 'results.html',{'candidates': candidates,'positions':position})
 
 ##################################################   Logout the user   #################################################################
 def logout_view(request):
@@ -217,7 +222,7 @@ def logout_view(request):
 def clear_votes(request):
     if request.user.is_authenticated:
         x = Candidate.objects.values_list('id', flat=True)
-        print(x)
+        # print(x)
         for ids in x:
             if Candidate.objects.filter(pk=ids).exists():
                 instance = Candidate.objects.get(pk=ids)
@@ -240,29 +245,7 @@ def clear_votes(request):
 ################################################  Mock panel  ########################################################################### 
 def mock_panel(request):
     if request.user.is_authenticated:
-        #count the votes if the request is post request...
-        if request.method == 'POST':
-                for position in Mock_Positions.objects.only('name'):
-                                                                # it will check for the position in the Positions table..
-                        choices = request.POST.get(str(position))
-                                                                # this will get the id of the selected person from the request..
-                        if Mock.objects.filter(pk=choices).exists():
-                            instance = Mock.objects.get(pk=choices)
-                                                                # this statement will create an instance to the primary key related to the candidate
-                            instance.votes += 1
-                                                                # this statement will add a vote the instance linking to that particular name...
-                            instance.save()
-                            # this will finally save the vote to the database for the respected field..
-                        else:
-                            continue
-                messages.success(request, 'Congratulation! Mock vote has been recorded..')
-                #context = { 'data':'disabled'}
-                return render(request, 'preciding_officer.html')#, ({'context':context})
-                
-
-        mock = Mock.objects.all()
-        position = Mock_Positions.objects.all().order_by('priority')
-        return render(request, 'mock_panel.html',{'candidates': mock,'position':position})
+        return render(request, 'mock_panel.html')
 
 ############################################### total_students_voted ##################################################################
 
@@ -280,41 +263,83 @@ def total_students_voted(request):
 
 def mock_results(request):
     if request.user.is_authenticated:
-        mock = Mock.objects.all()
-        position = Mock_Positions.objects.all().order_by('priority')
-        print(mock)
-        print(position)
+        # user_is = request.user
+        user_instance = po_vote_showing.objects.get(users=request.user)
+        if user_instance.status == True:
+            if user_instance.final_status == False:
+                user_instance.final_status = True
+                user_instance.save()
+                mock = Candidate.objects.all()
+                position = Positions.objects.all().order_by('priority')
+                messages.warning(request, 'Please, Keep a copy/print of this result. After this time you will not be able to view the result.')
+                return render(request, 'mock_results.html',{'candidates': mock,'positions':position})
+            else:
+                messages.warning(request,' You cannot view the results anymore, Because the Mock poll has ended ! Also you have exceeded the limit to view the results. For any querries ,contact Admin. ')
+                return HttpResponseRedirect(reverse('mock_panel'))
+        mock = Candidate.objects.all()
+        position = Positions.objects.all().order_by('priority')
         return render(request, 'mock_results.html',{'candidates': mock,'positions':position})
-        # return render(request, 'mock_results.html')
     else:
         return redirect('login')
 
 ########################################## CLear mock poll results #################################################################
+
 def mock_clear(request):
     if request.user.is_authenticated:
-        x = Mock.objects.values_list('id', flat=True)
-        print(x)
-        for ids in x:
-            if Mock.objects.filter(pk=ids).exists():
-                instance = Mock.objects.get(pk=ids)
-                #print(instance)                                                # this statement will create an instance to the primary key related to the candidate
-                instance.votes = 0
-                                                                # this statement will add a vote the instance linking to that particular name...
-                instance.save()
-                            # this will finally save the vote to the database for the respected field..
-            else:
-                continue
-        #candidates = Candidate.objects.all()
-        #for x in candidates.name:
-            #candidates.votes = 0
-        messages.success(request, " All votes are cleared from the Mock Poll Database..")
-        return render(request, 'preciding_officer.html')
+
+        # user_is = request.user
+        user_instance = po_vote_showing.objects.get(users=request.user)
+        if user_instance.status == True:
+            return HttpResponse(status=202)
+        else:
+            user_instance.status = True
+            user_instance.save()
+            x = Candidate.objects.values_list('id', flat=True)
+            # print(x)
+            if Voted.objects.filter(pk=1).exists():
+                        inst_tot_vot = Voted.objects.get(pk=1)
+                        inst_tot_vot.voted = 0
+                        inst_tot_vot.save()
+            for ids in x:
+                if Candidate.objects.filter(pk=ids).exists():
+                    instance = Candidate.objects.get(pk=ids)
+                    #print(instance)                                                # this statement will create an instance to the primary key related to the candidate
+                    instance.votes = 0
+                                                                    # this statement will add a vote the instance linking to that particular name...
+                    instance.save()
+                                # this will finally save the vote to the database for the respected field..
+                else:
+                    continue
+            #candidates = Candidate.objects.all()
+            #for x in candidates.name:
+                #candidates.votes = 0
+            messages.success(request, " All votes are cleared from the Mock Poll Database..")
+            # return render(request, 'mock_panel.html')
+            return HttpResponse(status=200)
       
 ######################################################  Ajax listener   #######################################################
-# def my_ajax_check(request):
-#     if request.user.is_authenticated:
-#         instance_ajax = extra_field.objects.get(users=request.user)
-#         if instance_ajax.status == True:
-#             return HttpResponse(status=403)
-#         else:
-#             return HttpResponse(status=200)    
+def my_ajax_check(request):
+    if request.user.is_authenticated:
+        instance_ajax = extra_field.objects.get(users=request.user)
+        if instance_ajax.status == True:
+            return HttpResponse(status=202)
+        else:
+            return HttpResponse(status=200)    
+
+####################################################   tot Mock Votes  ###########################################################
+def tot_mock(request):
+    if request.user.is_authenticated:
+        #global voted
+        #print(voted)
+        int_tot_vot = Voted.objects.get(pk=1)
+        context = { 'data': int_tot_vot.voted }
+        return render(request, 'tot_mock.html', {'total':context})
+    else:
+        return redirect('login')
+
+
+
+##################################################### Original Voting #######################################################
+def original_voting(request):
+    return render(request, 'original_voting.html')
+    # return HttpResponse(200)

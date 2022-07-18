@@ -159,8 +159,8 @@ Login to the admin panel with this url :
 > ##### admin
 
 
-After you are successfully logged in , Go to the users table and add New user and select the previledges. Add new admin and password as your choice and give him the 'super-user' access and after the new 'super-user' is created remove the default superuser.
- To create new Preciding officer just follow the same procedure but don't give him the superuser access this time. You can add as many staff users as you like(just keep in mind that , you need to create only one superuser).
+After you are successfully logged in , Go to the users table and add New user and select the previledges. Add new admin and password as your choice and give him the 'super-user(admin)' access and after the new 'super-user(admin)' is created remove the default superuser(amdin).
+ To create new Preciding officer just follow the same procedure but don't give him the superuser(admin) access this time. You can add as many staff users as you like(just keep in mind that , you need to create only one superuser(admin)).
 
 
 

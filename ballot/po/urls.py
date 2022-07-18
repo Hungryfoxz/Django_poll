@@ -19,4 +19,8 @@ urlpatterns = [
     path("mock_results/", views.mock_results, name='mock_results'),
     path("mock_clear/", views.mock_clear, name='mock_clear'),
     #path("my_ajax_check/",views.my_ajax_check, name='my_ajax_check'),
+    path("my_ajax_check/",views.my_ajax_check, name='my_ajax_check'), 
+    path("tot_mock/", views.tot_mock, name='tot_mock'),
+    path("original_voting/", views.original_voting, name= 'original_voting'),
+
 ]

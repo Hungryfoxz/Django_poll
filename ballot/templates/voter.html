@@ -2,7 +2,7 @@
 {% block content %}
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <!--  ===================================  Styles unique to this page goes here  ===========================================    -->
-<style>
+ <style>
 
     [type="radio"] {
       border: 0;
@@ -48,19 +48,19 @@
     fieldset {
       font-size: 1em;
       border: 2px solid rgb(255, 255, 255);
-      padding: 2rem;
+      padding: .35rem;
       border-radius: 0.5em;
       box-shadow: 6px 6px 20px rgba(122,122,122,0.4);
       transition: all 1s ease;
     }
     fieldset:hover{
-        transform: scale(1.1);
+        transform: scale(1.015);
      }
 
     legend {
-      color: linear-gradient(to right top, #4dd8bf, #4fd3e7);
-      background: rgb(255, 254, 254);
-      font-size: 1.44rem;
+      color: white;
+      background: rgb(0, 0, 0);
+      font-size: .85rem;
       padding: 0.25em 1em;
       border-radius: 1em;
     }
@@ -95,7 +95,7 @@
         width: 54vw; 
         display: flex; 
         justify-content: space-around;
-        margin-bottom: 1.45rem;
+        margin-bottom: .5rem;
         background: linear-gradient(to right bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.7));
     }
     .btnn{
@@ -153,6 +153,12 @@
         transition: do .1s;
 
     }
+    .success{
+      color: rgb(47, 208, 42);
+    }
+    .warning{
+      color: crimson; 
+    }
     .voter-msg li{
       list-style: none;
     }
@@ -183,6 +189,22 @@
           opacity: 0;
         }
       }
+
+      .align-me{
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+    }
+    .align-me-text{
+      margin: .85rem;
+    }
+    .imgu{
+        height: 6rem;
+        width: 4.25rem;
+        border-radius: .5rem;
+        overflow-y: hidden;
+    }
+
   </style>
   <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!--   ============================================    End of styles    =========================================================-->
@@ -218,10 +240,17 @@
             <!--  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 {% if candidate.position == position %}
                 <!-- ====================================================================== -->
-                <label for="{{candidate.name}}">
-                    <input type="radio" value="{{candidate.id}}" name="{{position}}" id="{{candidate.name}}" />
-                    <span>{{candidate.name}}</span>
-                </label>
+                <div class="align-me"> 
+                  <div class="align-me-text"> 
+                        <label for="{{candidate.name}}">
+                          <input type="radio" value="{{candidate.id}}" name="{{position}}" id="{{candidate.name}}" />
+                          <span>{{candidate.name}}</span>
+                        </label>
+                  </div> 
+                  <div> 
+                        <img class="imgu" src="/{{ candidate.image}}" alt="candidate_image.jpg">
+                      </div> 
+                  </div>
                 <!-- =====================================================================  -->
                 {% endif %}
                 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -242,6 +271,7 @@
 </div>
 </main>
 
+
 <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <!-- __________________________________________  Success message shown here!!!  ____________________________________________   -->
 <!--[++]  _____________________________________   This will be an alert.  _________________________________________________  [++]-->
@@ -250,9 +280,9 @@
   <div class="voter-msg">
     <ul>
       {% for message in messages %}
-      <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
+      <li {% if message.tags %}>
         
-        <h3><b>{{message}}</b></h3>
+        <h3><b class="{{ message.tags }}" {% endif %} >{{message}}</b></h3>
 
         {% endfor %}
       </ul>

@@ -22,21 +22,23 @@
         <div id="print-content">
           <table id="table">
             <tr class="header-row">
-              <th class="header-item items">NAME</th>
+              <th class="header-item items">CANDIDATE NAME</th>
               <th class="header-item items">POSTION NAME</th>
-              <th class="header-item items" style="padding-left: 2rem;">VOTE</th>
+              <th class="header-item items" style="padding-left: 2rem;">NO. OF VOTES</th>
             </tr>
+
             {% for position in positions %}
                     {% for candidate in candidates  %}
                         {% if candidate.position == position %}
                             <tr class="table-rows">
-                            <td class="items">{{candidate.name}}</td>
-                            <td class="items">{{candidate.position}}</td>
-                            <td class="items icon">{{candidate.votes}}</td>
+                            <td class="items">{{ candidate.name }}</td>
+                            <td class="items">{{ candidate.position }}</td>
+                            <td class="items icon">{{ candidate.votes }}</td>
                             </tr>
                         {% endif %}
                     {% endfor %}
             {% endfor %}
+            
           </table>
         </div>
         <div class="print_me">
@@ -47,16 +49,20 @@
 <div class="voted-back-butn">
   <a href="/preciding_officer"><button class="btn">Back</button></a>
 </div>
-    <script>
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            var originalContents = document.body.innerHTML;
 
-            document.body.innerHTML = printContents;
 
-            window.print();
+<!-- The javascript code to print the Results here..  -->
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
 
-            document.body.innerHTML = originalContents;
-        }
-     </script>
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
 {% endblock content %}

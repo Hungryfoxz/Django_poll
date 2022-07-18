@@ -50,7 +50,7 @@
 <script>
 
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    {% comment %} Pusher.logToConsole = true;
 
     var pusher = new Pusher('7abfa1c5b2f52b98dc73', {
     cluster: 'ap2'
@@ -66,7 +66,8 @@
        document.getElementById("ms").innerHTML = "One user Voted Successfully !"; 
        document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
        document.getElementById("spinner").style.display = "none";
-    });
+    }); {% endcomment %}
+
 </script>
 
 <!--  ############################################  PUSHER JS ENDING  ######################################################-->
@@ -96,14 +97,14 @@
 
         
         <div class="preciding-header">
-            <h1>Super Admin Panel</h1>
+            <h1>Super User Panel</h1>
         </div>
 
         <div class="preciding-form-button-main">
             <!--<form action=" " method="post">
                 {% csrf_token%}-->
             <div>
-                <p>Go to JIST Voting Admin panel.</p>
+                <p>Go to JIST Voting Admin panel/database.</p>
                 <div class="preciding-form-button-main-inside">            
                     <a href="/admin"><button class="btn bt" id="vote_btn">Admin Panel</button></a>
                 </div>
@@ -118,13 +119,13 @@
             <div class="preciding-tables-button">
                 <p>Get the total results of Elections.</p>
                 <div class="preciding-form-button-main-inside">
-                <a href="/aGlkZGVuLXJlc3VsdC1wYW5lbAoK"><button class="btn">Total Vote</button></a>
+                <a href="/aGlkZGVuLXJlc3VsdC1wYW5lbAoK"><button class="btn">Results</button></a>
                 </div>
             </div>
             <div class="preciding-logout-button">
             <p>Add/Remove presiding officer.</p>
                 <div class="preciding-form-button-main-inside">
-                <a href="/admin/auth/user/"><button class="btn">Edit here</button></a>
+                <a href="/admin/auth/user/"><button class="btn">Edit Here</button></a>
                 </div>
             </div>
         </div>
@@ -189,22 +190,22 @@
         <h1>Actions of the Presiding Officer</h1>
     </div>
 
-    <div class="preciding-form-button-main">
+    {% comment %} <div class="preciding-form-button-main">
         <!--<form action=" " method="post">
             {% csrf_token%}-->
         <div>
-            <p id="p-id">Click below to allow the user to submit his vote.</p>
+            <p id="p-id">Click below to go to the Original Voting.</p>
             <div class="preciding-form-button-main-inside">            
                 <!--<a href="/admitted_from_po">--><button onclick="new_vote()" class="btn bt" id="vote_btn">New Vote</button></a>
             </div>
         </div>
         <!--</form>-->
-    </div>
+    </div> {% endcomment %}
 
 
     <!--          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            -->
     <!--_____________________The bottom to buttons to show the results and the close voting button .________________________. -->
-    <div class="preciding-bottom-buttons">
+    <!-- <div class="preciding-bottom-buttons">
         <div class="preciding-tables-button">
             <p>Total students Voted till now.</p>
             <div class="preciding-form-button-main-inside">
@@ -217,7 +218,19 @@
             <a href="/logout"><button class="btn">Close Vote</button></a>
             </div>
         </div>
+    </div> -->
+    <div class="preciding-tables-button">
+        <p>Go to the Mock Poll ELection.</p>
+        <div class="preciding-form-button-main-inside">
+        <a href="/mock_panel"><button class="btn">Mock Poll</button></a>
+        </div>
     </div>
+    <div class="preciding-logout-button">
+        <p>Go to the Original Voting .</p>
+            <div class="preciding-form-button-main-inside">
+            <a href="/original_voting"><button class="btn">Original Vote</button></a>
+            </div>
+        </div>
 </div>
 </div> 
 
@@ -265,6 +278,9 @@
 
 {% endif %}
 </main>
+<div class="super-logout">
+    <a href="/logout"><button class="btn">Logout</button></a>
+</div>
 
 
 
@@ -277,41 +293,10 @@
             <h5>Clear all vote to Zero.</h5>
          </div>
          <div class="clr-btn" style="align-items: center;">
-             <button onclick="clear_me()" class="btn" id="clr">Reset Vote</button>
+             <button onclick="clear_me()" class="btn" id="clr">Clear Vote</button>
          </div>
     </div>
-    
-{% else %}
-    <div class="super-user-area-p for-presiding">
-        <div class="clr-h5">
-            <h5>Start a Mock poll</h5>
-        </div>
-        <div class="clr-btn" style="align-items: center;">
-            <a href="/mock_panel"><button class="btn">Mock Poll</button></a>
-        </div>
-        <div class="clr-h5" style="padding-top: 1rem;">
-            <h5>Mock poll Results</h5>
-        </div>
-        <div class="clr-btn" style="align-items: center;">
-            <a href="/mock_results"><button class="btn">Mock Results</button></a>
-        </div>
-    </div>
 
-    {% if messages %}
-    <div class="preciding-messages-mock" id="hide_the_div">
-            <ul class="">
-                {% for message in messages %}
-                <li {% if message.tags %} class=" {{ message.tags }}"{% endif %}>
-                    
-                    <h5><b>{{message}}</b></h5>
-                    
-                {% endfor %}
-            </ul>
-        </div>     
-    {% endif %}
-{% endif %}
-
-{% if user.is_superuser %}
 <div class="super-logout">
     <a href="/logout"><button class="btn">Logout</button></a>
 </div>
@@ -343,102 +328,6 @@
     }
     currentTime(); /* calling currentTime() function to initiate the process */
    
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
-     //_________________________________________Voter add button function ...___________________________________________//
-    function new_vote(){
-        //console.log("Hi");
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET',"/admitted_from_po");
-        xhr.send();
-        //console.log(1);
-        document.getElementById("ms").innerHTML = " The Voter can vote Now !";
-        //console.log(2);
-        setTimeout(function(){
-                document.getElementById("ms").innerHTML = " Waiting for the Voter to vote Now !";
-            }, 6000);
-        document.getElementById("vote_btn").disabled = true;
-        document.getElementById("vote_btn").innerHTML = "Waiting";
-        document.getElementById("p-id").innerHTML = "Waiting for the voter to Submit his/her Vote .";
-        document.getElementById("spinner").style.display = "inline-block";
-        interval;
-    }
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
-    //clear button for the superuser ....placed here ....
-    function clear_me(){
-        let message = "You are about to clear all the votes from the Candidates . Are you sure you want to perform this action ."
-        var reply = confirm(message);
-        if(reply){
-            var again_reply = confirm("Are you really sure!");
-            if(again_reply){
-                var name = prompt("What is your username?");
-                if(name == '{{user}}'){
-                    const confirmation = prompt("Write 'CONFIRM' to confirm.");
-                    const str_compare = "CONFIRM"
-                    if(confirmation === str_compare){
-                        //console.log(111)
-                        let xhttp = new XMLHttpRequest();
-                        xhttp.open('GET',"/clear_votes");
-                        xhttp.send();
-                        alert("Success! All the votes are cleared from the database.");
-                    }else{
-                        alert("Please try again and write the word 'CONFIRM' to confirm your choice.")
-                    }
-                }else{
-                    alert("Wrong username!")
-                }
-                //alert("Success! All the votes are cleared from the database.")
-            }
-        }
-    }
-
-
-
-    //Ajax
-
-    // interval = setInterval(function(){
-    //     //Code to AJax check goes here ......
-    //     const xhrAjax = new XMLHttpRequest();
-    //     xhrAjax.open('GET',"/my_ajax_check");
-    //     xhrAjax.onload = function(){
-    //         if(this.status === 200){
-    //             console.log("200");
-    //             //if(window.performance.navigation.type == 0){
-    //             document.getElementById("ms").innerHTML = " ";
-    //             alert("Success, The voter has submitted his vote !");                
-    //             document.getElementById("vote_btn").disabled = false;
-    //             document.getElementById("vote_btn").innerHTML = "New Vote";
-    //             document.getElementById("ms").innerHTML = "One user Voted Successfully !"; 
-    //             document.getElementById("p-id").innerHTML = "Click below to allow the user to submit his vote.";
-    //             document.getElementById("spinner").style.display = "none";
-    //             clearInterval(interval);
-    //             //}
-    //         }
-    //         else{
-    //             console.log("403")
-    //         }
-    //     }
-    //     xhrAjax.send()
-    // },2000);
-
-
-     /////////////////////////////////////////////////%%%%%%%%%%%%%%%%////////////////////////////////////////////////////////
-    // let intervalid 
-    // async function testFunction() {
-    //     intervalid = setInterval(() => {
-    //         // I use axios like: axios.get('/user?ID=12345').then
-    //         new Promise(function(resolve, reject){
-    //                 resolve('something')
-    //             }).then(res => {
-    //                         if (condition) {
-    //                             // do something 
-    //                         } else {
-    //                             clearInterval(intervalid)
-    //                          }    
-    //             })  
-    //     }, 2000)  
-    // }
-    // // you can use this function like
-    // testFunction()
 
 
 </script>

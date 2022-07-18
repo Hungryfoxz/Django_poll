@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.contrib import admin
-from po.models import Positions, Candidate, extra_field, Mock,Mock_Positions,Voted
+from po.models import Positions, Candidate, extra_field, Mock,Mock_Positions,Voted,po_vote_showing
 from django.contrib.auth.models import Group
 
 # Unregister Group Here
@@ -21,7 +21,8 @@ class MyModelAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Positions)
 admin.site.register(Candidate, CandidateAdmin)
-admin.site.register(extra_field, MyModelAdmin)
+admin.site.register(extra_field)
 admin.site.register(Voted, MyModelAdmin)
 admin.site.register(Mock)
 admin.site.register(Mock_Positions)
+admin.site.register(po_vote_showing)
